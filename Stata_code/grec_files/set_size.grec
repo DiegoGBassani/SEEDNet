@@ -1,0 +1,22 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: bygraph_g
+*! family: by
+*! date: 22 Jul 2024
+*! time: 18:01:51
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.note.style.editstyle color(none) editcopy
+// note color
+
+.b1title.text = {}
+.b1title.text.Arrpush `"Settlement area in pixels (log; integers)"'
+// bottom 1 edits
+
+
+// <end>
