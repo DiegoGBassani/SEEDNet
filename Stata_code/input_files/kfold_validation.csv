@@ -1,0 +1,151 @@
+,COUNTRY,YEAR,INDICATOR,BIAS,RMSE,MAD
+0,Angola,2015,Household with Electricity,0.004285,0.0162,0.0097
+1,Angola,2015,Improved Water Source,0.008207,0.0255,0.0185
+2,Angola,2015,Iodized Salt Intake in Household,-0.000545,0.0131,0.0081
+3,Angola,2015,Prevalence of any Anemia in Women,nan,nan,nan
+4,Angola,2015,Antenatal Care Visits (4+) during Pregnancy,0.000915,0.0171,0.0121
+5,Angola,2015,Low Birth Weight Prevalence,-0.000629,0.0121,0.0080
+6,Angola,2015,Exclusive Breastfeeding (0-6 months),-0.000932,0.0218,0.0155
+7,Angola,2015,BCG Immunization (12-23 months),0.003873,0.0250,0.0168
+8,Angola,2015,DPT3 Immunization (12-23 months),0.003615,0.0197,0.0149
+9,Angola,2015,Measles Immunization (12-23 months),0.003219,0.0230,0.0168
+10,Angola,2015,Children (0-59 months) Slept under Mosquito Net,0.000547,0.0127,0.0086
+11,Angola,2015,Diarrhea Treatment with ORS (0-59 months),0.003521,0.0221,0.0159
+12,Angola,2015,Stunting Prevalence (0-59 months),-0.002480,0.0117,0.0084
+13,Angola,2015,Wasting Prevalence (0-59 months),-0.000316,0.0055,0.0037
+14,Angola,2015,Prevalence of any Anemia in Children (0-59 months),-0.003397,0.0184,0.0125
+15,Benin,2017,Household with Electricity,0.003833,0.0160,0.0118
+16,Benin,2017,Improved Water Source,0.001077,0.0181,0.0136
+17,Benin,2017,Iodized Salt Intake in Household,-0.000609,0.0044,0.0029
+18,Benin,2017,Prevalence of any Anemia in Women,0.002407,0.0151,0.0098
+19,Benin,2017,Antenatal Care Visits (4+) during Pregnancy,0.000522,0.0172,0.0116
+20,Benin,2017,Low Birth Weight Prevalence,0.000399,0.0076,0.0055
+21,Benin,2017,Exclusive Breastfeeding (0-6 months),0.002204,0.0201,0.0149
+22,Benin,2017,BCG Immunization (12-23 months),-0.001855,0.0167,0.0108
+23,Benin,2017,DPT3 Immunization (12-23 months),0.002696,0.0169,0.0121
+24,Benin,2017,Measles Immunization (12-23 months),0.000957,0.0208,0.0144
+25,Benin,2017,Children (0-59 months) Slept under Mosquito Net,-0.000119,0.0104,0.0077
+26,Benin,2017,Diarrhea Treatment with ORS (0-59 months),0.000293,0.0221,0.0145
+27,Benin,2017,Stunting Prevalence (0-59 months),-0.000763,0.0100,0.0071
+28,Benin,2017,Wasting Prevalence (0-59 months),0.000226,0.0031,0.0023
+29,Benin,2017,Prevalence of any Anemia in Children (0-59 months),-0.001553,0.0132,0.0097
+30,Cambodia,2014,Household with Electricity,0.006646,0.0278,0.0194
+31,Cambodia,2014,Improved Water Source,0.002135,0.0200,0.0126
+32,Cambodia,2014,Iodized Salt Intake in Household,-0.000725,0.0136,0.0092
+33,Cambodia,2014,Prevalence of any Anemia in Women,-0.001521,0.0096,0.0068
+34,Cambodia,2014,Antenatal Care Visits (4+) during Pregnancy,0.001160,0.0175,0.0125
+35,Cambodia,2014,Low Birth Weight Prevalence,-0.001619,0.0070,0.0048
+36,Cambodia,2014,Exclusive Breastfeeding (0-6 months),-0.003296,0.0287,0.0217
+37,Cambodia,2014,BCG Immunization (12-23 months),0.000513,0.0141,0.0070
+38,Cambodia,2014,DPT3 Immunization (12-23 months),0.003203,0.0182,0.0127
+39,Cambodia,2014,Measles Immunization (12-23 months),0.003586,0.0249,0.0164
+40,Cambodia,2014,Children (0-59 months) Slept under Mosquito Net,nan,nan,nan
+41,Cambodia,2014,Diarrhea Treatment with ORS (0-59 months),-0.001611,0.0238,0.0173
+42,Cambodia,2014,Stunting Prevalence (0-59 months),-0.001040,0.0132,0.0097
+43,Cambodia,2014,Wasting Prevalence (0-59 months),-0.000067,0.0088,0.0063
+44,Cambodia,2014,Prevalence of any Anemia in Children (0-59 months),-0.002342,0.0160,0.0114
+45,Gabon,2012,Household with Electricity,0.004017,0.0306,0.0204
+46,Gabon,2012,Improved Water Source,0.007320,0.0178,0.0120
+47,Gabon,2012,Iodized Salt Intake in Household,-0.000292,0.0059,0.0016
+48,Gabon,2012,Prevalence of any Anemia in Women,0.000455,0.0138,0.0086
+49,Gabon,2012,Antenatal Care Visits (4+) during Pregnancy,0.002193,0.0195,0.0132
+50,Gabon,2012,Low Birth Weight Prevalence,-0.000683,0.0128,0.0073
+51,Gabon,2012,Exclusive Breastfeeding (0-6 months),-0.000873,0.0152,0.0091
+52,Gabon,2012,BCG Immunization (12-23 months),0.002495,0.0190,0.0107
+53,Gabon,2012,DPT3 Immunization (12-23 months),-0.000806,0.0209,0.0145
+54,Gabon,2012,Measles Immunization (12-23 months),-0.003133,0.0233,0.0162
+55,Gabon,2012,Children (0-59 months) Slept under Mosquito Net,0.001969,0.0125,0.0088
+56,Gabon,2012,Diarrhea Treatment with ORS (0-59 months),0.000633,0.0224,0.0150
+57,Gabon,2012,Stunting Prevalence (0-59 months),-0.001151,0.0123,0.0081
+58,Gabon,2012,Wasting Prevalence (0-59 months),0.000532,0.0044,0.0030
+59,Gabon,2012,Prevalence of any Anemia in Children (0-59 months),-0.004356,0.0185,0.0127
+60,Malawi,2015,Household with Electricity,0.002646,0.0113,0.0065
+61,Malawi,2015,Improved Water Source,0.004535,0.0207,0.0129
+62,Malawi,2015,Iodized Salt Intake in Household,0.000202,0.0144,0.0076
+63,Malawi,2015,Prevalence of any Anemia in Women,-0.000308,0.0161,0.0110
+64,Malawi,2015,Antenatal Care Visits (4+) during Pregnancy,0.001606,0.0136,0.0098
+65,Malawi,2015,Low Birth Weight Prevalence,0.000640,0.0066,0.0044
+66,Malawi,2015,Exclusive Breastfeeding (0-6 months),0.001966,0.0299,0.0213
+67,Malawi,2015,BCG Immunization (12-23 months),-0.000673,0.0102,0.0044
+68,Malawi,2015,DPT3 Immunization (12-23 months),-0.002699,0.0126,0.0063
+69,Malawi,2015,Measles Immunization (12-23 months),-0.000041,0.0130,0.0078
+70,Malawi,2015,Children (0-59 months) Slept under Mosquito Net,0.002958,0.0126,0.0092
+71,Malawi,2015,Diarrhea Treatment with ORS (0-59 months),0.007709,0.0232,0.0178
+72,Malawi,2015,Stunting Prevalence (0-59 months),-0.000716,0.0165,0.0122
+73,Malawi,2015,Wasting Prevalence (0-59 months),0.000162,0.0039,0.0024
+74,Malawi,2015,Prevalence of any Anemia in Children (0-59 months),-0.001331,0.0170,0.0119
+75,Mali,2018,Household with Electricity,0.002886,0.0165,0.0116
+76,Mali,2018,Improved Water Source,0.004780,0.0231,0.0158
+77,Mali,2018,Iodized Salt Intake in Household,0.000156,0.0114,0.0060
+78,Mali,2018,Prevalence of any Anemia in Women,0.000188,0.0110,0.0083
+79,Mali,2018,Antenatal Care Visits (4+) during Pregnancy,0.000825,0.0160,0.0114
+80,Mali,2018,Low Birth Weight Prevalence,0.002534,0.0167,0.0110
+81,Mali,2018,Exclusive Breastfeeding (0-6 months),-0.002908,0.0238,0.0181
+82,Mali,2018,BCG Immunization (12-23 months),0.002436,0.0219,0.0140
+83,Mali,2018,DPT3 Immunization (12-23 months),-0.001907,0.0194,0.0140
+84,Mali,2018,Measles Immunization (12-23 months),0.001091,0.0199,0.0131
+85,Mali,2018,Children (0-59 months) Slept under Mosquito Net,-0.000416,0.0079,0.0055
+86,Mali,2018,Diarrhea Treatment with ORS (0-59 months),-0.003583,0.0204,0.0144
+87,Mali,2018,Stunting Prevalence (0-59 months),-0.000154,0.0082,0.0059
+88,Mali,2018,Wasting Prevalence (0-59 months),-0.001703,0.0051,0.0037
+89,Mali,2018,Prevalence of any Anemia in Children (0-59 months),-0.001366,0.0102,0.0074
+90,Mozambique,2011,Household with Electricity,0.002628,0.0126,0.0075
+91,Mozambique,2011,Improved Water Source,0.000506,0.0247,0.0167
+92,Mozambique,2011,Iodized Salt Intake in Household,0.000638,0.0115,0.0081
+93,Mozambique,2011,Prevalence of any Anemia in Women,0.000529,0.0125,0.0081
+94,Mozambique,2011,Antenatal Care Visits (4+) during Pregnancy,-0.001553,0.0187,0.0126
+95,Mozambique,2011,Low Birth Weight Prevalence,0.000802,0.0132,0.0095
+96,Mozambique,2011,Exclusive Breastfeeding (0-6 months),0.004798,0.0265,0.0191
+97,Mozambique,2011,BCG Immunization (12-23 months),0.002204,0.0156,0.0091
+98,Mozambique,2011,DPT3 Immunization (12-23 months),0.004820,0.0198,0.0141
+99,Mozambique,2011,Measles Immunization (12-23 months),-0.000118,0.0191,0.0135
+100,Mozambique,2011,Children (0-59 months) Slept under Mosquito Net,0.000945,0.0129,0.0094
+101,Mozambique,2011,Diarrhea Treatment with ORS (0-59 months),0.002785,0.0301,0.0217
+102,Mozambique,2011,Stunting Prevalence (0-59 months),0.000855,0.0108,0.0074
+103,Mozambique,2011,Wasting Prevalence (0-59 months),0.000275,0.0054,0.0033
+104,Mozambique,2011,Prevalence of any Anemia in Children (0-59 months),-0.001844,0.0159,0.0109
+105,Nigeria,2013,Household with Electricity,0.003319,0.0252,0.0185
+106,Nigeria,2013,Improved Water Source,0.001278,0.0230,0.0165
+107,Nigeria,2013,Iodized Salt Intake in Household,nan,nan,nan
+108,Nigeria,2013,Prevalence of any Anemia in Women,nan,nan,nan
+109,Nigeria,2013,Antenatal Care Visits (4+) during Pregnancy,0.003186,0.0184,0.0138
+110,Nigeria,2013,Low Birth Weight Prevalence,-0.001727,0.0226,0.0137
+111,Nigeria,2013,Exclusive Breastfeeding (0-6 months),0.003764,0.0213,0.0124
+112,Nigeria,2013,BCG Immunization (12-23 months),0.001080,0.0173,0.0119
+113,Nigeria,2013,DPT3 Immunization (12-23 months),0.002243,0.0185,0.0130
+114,Nigeria,2013,Measles Immunization (12-23 months),0.002077,0.0181,0.0128
+115,Nigeria,2013,Children (0-59 months) Slept under Mosquito Net,0.001427,0.0098,0.0067
+116,Nigeria,2013,Diarrhea Treatment with ORS (0-59 months),0.003797,0.0210,0.0153
+117,Nigeria,2013,Stunting Prevalence (0-59 months),-0.001680,0.0097,0.0069
+118,Nigeria,2013,Wasting Prevalence (0-59 months),0.000819,0.0075,0.0047
+119,Nigeria,2013,Prevalence of any Anemia in Children (0-59 months),nan,nan,nan
+120,Senegal,2019,Household with Electricity,0.006986,0.0289,0.0213
+121,Senegal,2019,Improved Water Source,0.005893,0.0225,0.0151
+122,Senegal,2019,Iodized Salt Intake in Household,nan,nan,nan
+123,Senegal,2019,Prevalence of any Anemia in Women,nan,nan,nan
+124,Senegal,2019,Antenatal Care Visits (4+) during Pregnancy,0.005199,0.0168,0.0126
+125,Senegal,2019,Low Birth Weight Prevalence,0.001357,0.0071,0.0053
+126,Senegal,2019,Exclusive Breastfeeding (0-6 months),0.003720,0.0246,0.0184
+127,Senegal,2019,BCG Immunization (12-23 months),-0.000528,0.0076,0.0051
+128,Senegal,2019,DPT3 Immunization (12-23 months),0.000844,0.0103,0.0068
+129,Senegal,2019,Measles Immunization (12-23 months),0.000686,0.0135,0.0086
+130,Senegal,2019,Children (0-59 months) Slept under Mosquito Net,-0.000286,0.0174,0.0123
+131,Senegal,2019,Diarrhea Treatment with ORS (0-59 months),0.002031,0.0235,0.0169
+132,Senegal,2019,Stunting Prevalence (0-59 months),0.000436,0.0086,0.0058
+133,Senegal,2019,Wasting Prevalence (0-59 months),0.000650,0.0049,0.0035
+134,Senegal,2019,Prevalence of any Anemia in Children (0-59 months),nan,nan,nan
+135,Zambia,2018,Household with Electricity,0.004321,0.0197,0.0120
+136,Zambia,2018,Improved Water Source,0.004247,0.0210,0.0148
+137,Zambia,2018,Iodized Salt Intake in Household,0.000679,0.0155,0.0097
+138,Zambia,2018,Prevalence of any Anemia in Women,-0.000105,0.0097,0.0064
+139,Zambia,2018,Antenatal Care Visits (4+) during Pregnancy,-0.001909,0.0156,0.0111
+140,Zambia,2018,Low Birth Weight Prevalence,0.000756,0.0064,0.0044
+141,Zambia,2018,Exclusive Breastfeeding (0-6 months),-0.003559,0.0243,0.0170
+142,Zambia,2018,BCG Immunization (12-23 months),0.000445,0.0088,0.0045
+143,Zambia,2018,DPT3 Immunization (12-23 months),-0.002166,0.0118,0.0077
+144,Zambia,2018,Measles Immunization (12-23 months),0.000708,0.0148,0.0096
+145,Zambia,2018,Children (0-59 months) Slept under Mosquito Net,-0.000548,0.0120,0.0085
+146,Zambia,2018,Diarrhea Treatment with ORS (0-59 months),0.005064,0.0257,0.0188
+147,Zambia,2018,Stunting Prevalence (0-59 months),-0.000090,0.0119,0.0079
+148,Zambia,2018,Wasting Prevalence (0-59 months),0.000184,0.0048,0.0028
+149,Zambia,2018,Prevalence of any Anemia in Children (0-59 months),0.000928,0.0115,0.0083
