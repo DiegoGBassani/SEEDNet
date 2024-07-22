@@ -536,42 +536,6 @@ set graph off
 ***************************** ***************************** ***************************** 
 cd "$grec"
 
-* Descriptive plots - settlement distribution, by settlement area in pixels  
-* Across all surveys (Total) 
-* Bar plot
-// drop if flag==1
-
-* Select one indicator to avoid double count.
-* Check which ind is the most complete
-tab ind_order surv if flag!=1
-
-* Select ind==1 (electricity) as it is the most complete
-
-* Create local for indicator selected (replace number below with indicator code)
-local c = 1
-
-
-* Create local for indicator selected (replace number below with indicator code)
-local c = 1
-* Log scale for y-axis
-
-**Supplementary Figure 2
-
-cap drop freq_sett_tot
-egen freq_sett_tot = sum(count), by(npl ind_order)
-twoway bar freq_sett_tot npl if ind_order==`c', ///
-		title("Distribution of Settlements by settlement area", size(vvtiny) color(none)) ///
-		subtitle("Total", size(small) color(none)) ///
-		xlab(0(1)10, labsize(small)) yscale(log) yscale(r(1)) ///
-		ylab(1 10 100 200 400 800 1600 3200 6400, labsize(small)) /// 
-		ytitle("Number of settlements (log scale)", size(small)) ///
-		ysize(3) xsize(6) ///
-		barwidth(0.9) ///
-		base(1) ///
-		note( , size(vtiny)) 
-		graph save "$graphs/loocv_settlement_areas_t_log.gph", replace
-		graph export "$pngs/loocv_settlement_areas_t_log.png", replace wid(5000)
-***************************** ***************************** ***************************** 
 
 **Figure 12
 

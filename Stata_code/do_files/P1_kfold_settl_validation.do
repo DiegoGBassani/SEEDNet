@@ -215,9 +215,136 @@ label variable rse "Ratio SE/Est (%)"
 
 **************************************************
 
-* Outputs
+* Creates derived variables with deciles of settlement size across all surveys (full sample, referred to as 'global')
 
-* Plots - Supplementary Figures 35 to 49.
+xtile pix_cat = num_pixels, nquantiles(10)
+label var pix_cat "Global Dec. of settlement area (pixels)"
+
+* Resulting distribution can be visualized using these scatterplots
+
+*** /*
+colorpalette plasma, n(9) nograph
+scatter pix_cat num_pixels, jitter(0.5) yscale() xscale(log) ///
+			ylabel(1(1)10) ///
+			xlabel(1 4 10 50 100 500 1000 10000 50000) xlab(, angle(vert)) ///
+			msymbol(pipe) msize(huge) mlwidth(vvthin) ///
+			colorvar(pix_cat) colorlist(`r(p)') colordiscrete clegend(off)
+			*graph save "$graphs/pix_cat_distribution.gph", replace   
+			graph export "$pngs/pix_cat_distribution.png", replace wid(4000)
+*/
+
+* Creates derived variables with deciles of settlement size across all surveys (survey sample, referred to as 'local')
+
+egen pix_cat_loc=xtile(num_pixels), nq(10) by(surv)
+label var pix_cat_loc "Local Dec. of settlement area (pixels)"
+
+* Creates derived variables with centiles of settlement size across all surveys (full sample, referred to as 'global')
+
+egen pix_cat_loc_cent = xtile(num_pixels), nquantiles(100) by(surv)
+label var pix_cat_loc_cent "Local Cent. of settlement area (pixels)"
+
+
+* Resulting distribution can be visualized using these scatterplots
+
+*** /*
+colorpalette plasma, n(9) nograph
+scatter pix_cat_loc num_pixels, jitter(0.5) yscale() xscale(log) ///
+			ylabel(1(1)10) ///
+			xlabel(1 4 10 50 100 500 1000 10000 50000) xlab(, angle(vert)) ///
+			msymbol(pipe) msize(large) mlwidth(vvthin) ///
+			colorvar(pix_cat_loc) colorlist(`r(p)') colordiscrete clegend(on) ///
+			by(surv, col(5) scale(0.8) note("Note: Marker colors correspond to deciles of global settlement size distribution", size(vvtiny))) ///
+			subtitle( , nobox) ///
+			ysize(2) xsize(4) 
+			graph export "$pngs/pix_cat_loc_distribution.png", replace wid(4000)
+*/
+
+* Creates derived variable with settlement area in the log scale (full sample, referred to as 'global')
+
+gen num_pixels_log=log(num_pixels)
+label var num_pixels_log "Settlement Area (log)"
+
+* Resulting distribution can be visualized using these scatterplots
+
+*** /*
+colorpalette inferno, n(9) nograph
+scatter num_pixels_log num_pixels, jitter(0.5) yscale(log) xscale(log) ///
+			ylabel(1(1)10) ///
+			xlabel(1 4 10 50 100 500 1000 10000 50000) xlab(, angle(vert)) ///
+			msymbol(pipe) msize(large) mlwidth(vvthin) ///
+			colorvar(pix_cat) colordiscrete colorlist(`r(p)') clegend(off) ///
+			by(surv, col(5) scale(0.8) note("Note: Marker colors correspond to deciles of global settlement size distribution", size(vvtiny))) ///
+			subtitle( , nobox) ///
+			ysize(2) xsize(4)
+			graph export "$pngs/num_pix_log_distribution.png", replace wid(4000)
+*/
+
+* Creates derived variable categorizing the deciles of settlement area in the log scale (by survey sample, referred to as 'local')
+
+egen quant_log=xtile(num_pixels_log), nq(10) by(surv)
+label var quant_log "Local Dec. of Settlement Area (log)"
+
+* Resulting distribution can be visualized using these scatterplots
+
+*** /*
+colorpalette plasma, n(9) nograph
+scatter quant_log num_pixels, jitter(0.5) yscale() xscale(log) ///
+			ylabel(1(1)10) ///
+			xlabel(1 4 10 50 100 500 1000 10000 50000) xlab(, angle(vert)) ///
+			msymbol(pipe) msize(large) mlwidth(vvthin) ///
+			colorvar(quant_log) colorlist(`r(p)') colordiscrete clegend(off) ///
+			by(surv, col(5) scale(0.8) note("Note: Marker colors correspond to deciles of global settlement size distribution", size(vvtiny))) ///
+			subtitle( , nobox) ///
+			ysize(2) xsize(4)
+			graph export "$pngs/quant_log_distribution_local.png", replace wid(4000)
+*/
+
+
+* Creates derived variable categorizing the quitiles of settlement area in the log scale (by survey sample, referred to as 'local')
+
+
+egen quant5_log=xtile(num_pixels_log), nq(5) by(surv)
+label var quant5_log "Local Quint. of Settlement Area (log)"
+
+* Resulting distribution can be visualized using these scatterplots
+
+*** /*
+colorpalette plasma, n(5) nograph
+scatter quant5_log num_pixels, jitter(0.5) yscale() xscale(log) ///
+			ylabel(1(1)5) ///
+			xlabel(1 4 10 50 100 500 1000 10000 50000) xlab(, angle(vert)) ///
+			msymbol(pipe) msize(large) mlwidth(vvthin) ///
+			colorvar(quant5_log) colorlist(`r(p)') colordiscrete clegend(off) ///
+			by(surv, col(5) scale(0.8) note("Note: Marker colors correspond to deciles of global settlement size distribution", size(vvtiny))) ///
+			subtitle( , nobox) ///
+			ysize(2) xsize(4)
+			graph export "$pngs/quant5_log_distribution_local.png", replace wid(4000)
+*/
+
+
+
+gen npl=round(num_pixels_log) // **rounded to integers
+label var npl "Settlement area in pixels (log; integers)"
+
+* Resulting distribution can be visualized using these scatterplots
+*** /*
+sort surv num_pixels
+colorpalette plasma, n(10) nograph
+scatter npl num_pixels, jitter(0.5) yscale(log) xscale(log) ///
+			ylabel(1 5 10,) ///
+			xlabel(4 10 50 100 500 1000 5000 10000 30000 ,) xlab(, angle(vert)) ///
+			msymbol(Oh) msize(large) mlwidth(vvvthin) ///
+			colorvar(npl) colorlist(`r(p)') colordiscrete clegend(off) ///
+			by(surv, col(5) scale(0.8) note("Note: Marker colors correspond to deciles of global settlement size distribution", size(vvtiny))) ///
+			subtitle( , nobox) ///
+			ysize(2) xsize(4)
+			graph export "$pngs/npl_distribution.png", replace wid(4000)
+*/
+
+
+**************************************************
+
+* Outputs
 
 * Option to turn plot rendering off for increasing processing speed
 set graph off
@@ -225,8 +352,52 @@ set graph off
 
 ***************************** ***************************** ***************************** 
 cd "$grec"
+
+**Figure 10
+
+cap drop freq_sett_tot
+egen freq_sett_tot = sum(count), by(npl ind_order)
+twoway bar freq_sett_tot npl if ind_order==1, ///
+		title("Distribution of Settlements by settlement area", size(vvtiny) color(none)) ///
+		subtitle("Total", size(small) color(none)) ///
+		xlab(0(1)10, labsize(small)) yscale(log) yscale(r(1)) ///
+		ylab(1 10 100 200 400 800 1600 3200 6400 12800 25600 51200, labsize(small)) /// 
+		ytitle("Number of settlements (log scale)", size(small)) ///
+		ysize(3) xsize(6) ///
+		barwidth(0.9) ///
+		base(1) ///
+		note( , size(vtiny)) 
+		graph save "$graphs/settlement_areas_t_log.gph", replace
+		graph export "$pngs/settlement_areas_t_log.png", replace wid(5000)
 ***************************** ***************************** ***************************** 
 
+
+**Supplementary Figure 2
+
+twoway (scatteri 1 0 1 0, by(surv) mcolor(none)) || (bar freq_sett_tot npl if ind_order==1, ///
+		by(surv,  col(5) ///
+		title("Distribution of Settlements by area by survey", size(vvtiny) color(none))) ///
+		xlab(0(1)10, labsize(small)) /// 
+		xtitle("Settlement area in pixels (log)", size(small)) ///
+		yscale(log) yscale(r(1)) ///
+		ylab(1 10 100 200 400 800 1600 3200 6400 12800 25600 51200, labsize(small)) /// yline(line2) ///
+		ytitle("Number of settlements (log scale)", size(small)) ///
+		ysize(3) xsize(6) ///
+		barwidth(0.9) ///
+		base(1) ///
+		note( , size(vtiny) color(none)))
+		graph play v_loocv_set
+		graph play ratio_op_loocv
+		graph play hide_legend2
+		graph play set_size
+		graph save "$graphs/settlement_areas_log.gph", replace
+        graph export "$pngs/settlement_areas_log.png", replace wid(5000)		
+***************************** ***************************** ***************************** 
+
+
+* Plots - Supplementary Figures 35 to 49.
+
+***************************** ***************************** ***************************** 
 
 
 *Scatterplots of Direct Estimates and Predictions by indicator with equations

@@ -22,7 +22,7 @@
 // ###################
 
 ***************************** ***************************** ***************************** 
-global path "UPDATE WITH PATH TO PROJECT FOLDER"
+global path "/Users/diegobassani/Library/CloudStorage/OneDrive-SickKids/IPE_Team_Folder/Nets_Paper_1/dhs_nets/stata/Paper1_nets/"
 ***************************** ***************************** ***************************** 
 
 cap mkdir "$path/stata_do_files" // place these *.do files inside this folder
