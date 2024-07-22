@@ -1,0 +1,45 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: combinegraph_g
+*! family: combine
+*! date: 22 Jun 2024
+*! time: 18:16:07
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.plotregion1.graph1.plotregion1.graph1.yaxis1.reset_rule -0.02 0.06 0.02 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.plotregion1.graph1.yaxis1.reset_rule -0.02 0.06 0.02 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.plotregion1.graph2.yaxis1.reset_rule -0.02 0.06 0.02 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.plotregion1.graph3.yaxis1.reset_rule -0.02 0.06 0.02 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.plotregion1.graph4.yaxis1.reset_rule 0 0.6 0.2 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.plotregion1.graph5.yaxis1.reset_rule 0 0.6 0.2 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.plotregion1.graph6.yaxis1.reset_rule 0 0.6 0.2 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.plotregion1.graph7.yaxis1.reset_rule 0 0.6 0.2 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.plotregion1.graph8.yaxis1.reset_rule 0 0.6 0.2 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.plotregion1.graph9.yaxis1.reset_rule 0 0.6 0.2 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+
+// <end>

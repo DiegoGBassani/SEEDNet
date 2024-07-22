@@ -1,0 +1,91 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: twowaygraph_g
+*! family: twoway
+*! date:  1 Jun 2024
+*! time: 16:52:24
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.move subtitle above 7 5
+// subtitle grid reposition
+
+.move subtitle above 7 5
+// subtitle grid reposition
+
+.move subtitle rightof 7 5
+// subtitle grid reposition
+
+.move subtitle above 7 5
+// subtitle grid reposition
+
+.move note above 7 5
+// note grid reposition
+
+.move note above 7 5
+// note grid reposition
+
+.move subtitle above 7 5
+// subtitle grid reposition
+
+.move subtitle above 7 5
+// subtitle grid reposition
+
+.move note above 7 5
+// note grid reposition
+
+.move subtitle on 7 5
+// subtitle grid reposition
+
+.move note above 7 5
+// note grid reposition
+
+.move note on 7 5
+// note grid reposition
+
+.move note on 7 5
+// note grid reposition
+
+.subtitle.style.editstyle size(vsmall) editcopy
+// subtitle size
+
+.subtitle.style.editstyle box_alignment(center) editcopy
+// subtitle compass position
+
+.subtitle.style.editstyle horizontal(right) editcopy
+.subtitle.style.editstyle vertical(top) editcopy
+// subtitle edits
+
+.subtitle.style.editstyle horizontal(left) editcopy
+// subtitle justification
+
+.subtitle.style.editstyle box_alignment(default) editcopy
+// subtitle compass position
+
+// subtitle compass position
+
+.subtitle.style.editstyle box_alignment(east) editcopy
+// subtitle compass position
+
+.subtitle.style.editstyle box_alignment(seast) editcopy
+// subtitle compass position
+
+// subtitle compass position
+
+.note.style.editstyle box_alignment(neast) editcopy
+// note compass position
+
+.note.style.editstyle box_alignment(nwest) editcopy
+// note compass position
+
+// note compass position
+
+.title.style.editstyle size(medsmall) editcopy
+// title size
+
+
+// <end>

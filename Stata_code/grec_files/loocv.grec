@@ -1,0 +1,136 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: combinegraph_g
+*! family: combine
+*! date: 26 Apr 2024
+*! time: 16:21:03
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.plotregion1.graph4.yaxis1.reset_rule 0 100 25 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph4.yaxis1.plotregion.declare_xyline .gridline_g.new 95, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph4.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph4.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph4.yaxis1.reset_rule 0 100 25 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph8.yaxis1.plotregion.declare_xyline .gridline_g.new 95, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph8.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph8.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph8.yaxis1.reset_rule 0 100 25 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph8.yaxis1.reset_rule 0 100 25 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph12.yaxis1.plotregion.declare_xyline .gridline_g.new 95, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph12.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph12.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph12.yaxis1.reset_rule 0 100 25 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.yaxis1.reset_rule -0.05 0.05 0.025 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph1.yaxis1.plotregion.declare_xyline .gridline_g.new 0, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph1.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph1.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph1.yaxis1.reset_rule -0.05 0.05 0.025 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph5.yaxis1.plotregion.declare_xyline .gridline_g.new 0, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph5.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph5.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph5.yaxis1.reset_rule -0.05 0.05 0.025 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph9.yaxis1.plotregion.declare_xyline .gridline_g.new 0, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph9.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph9.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph9.yaxis1.reset_rule -0.05 0.05 0.025 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph2.yaxis1.plotregion.declare_xyline .gridline_g.new 0, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph2.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph2.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph2.yaxis1.reset_rule 0 0.5 0.1 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph6.yaxis1.plotregion.declare_xyline .gridline_g.new 0, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph6.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph6.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph6.yaxis1.reset_rule 0 0.5 0.1 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph10.yaxis1.plotregion.declare_xyline .gridline_g.new 0, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph10.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph10.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph10.yaxis1.reset_rule 0 0.5 0.1 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph3.yaxis1.plotregion.declare_xyline .gridline_g.new 0, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph3.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph3.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph3.yaxis1.reset_rule 0 0.5 0.1 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph7.yaxis1.plotregion.declare_xyline .gridline_g.new 0, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph7.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph7.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph7.yaxis1.reset_rule 0 0.5 0.1 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph11.yaxis1.plotregion.declare_xyline .gridline_g.new 0, ordinate(y) plotregion(`.yaxis1.plotregion.objkey') style(default)
+.plotregion1.graph11.yaxis1.plotregion._xylines_new = 1
+.plotregion1.graph11.yaxis1.plotregion._xylines_rec = 1
+// yaxis1 edits
+
+.plotregion1.graph11.yaxis1.reset_rule 0 0.5 0.1 , tickset(major) ruletype(range) 
+// yaxis1 edits
+
+.plotregion1.graph9.xaxis1.major.num_rule_ticks = 4
+.plotregion1.graph9.xaxis1.edit_tick 3 15 `"15"', custom tickset(major) editstyle(tickstyle(textstyle(color(none))) tickstyle(linestyle(color(none))) )
+// xaxis1 edits
+
+.plotregion1.graph10.xaxis1.major.num_rule_ticks = 4
+.plotregion1.graph10.xaxis1.edit_tick 3 15 `"15"', custom tickset(major) editstyle(tickstyle(textstyle(color(none))) tickstyle(linestyle(color(none))) )
+// xaxis1 edits
+
+.plotregion1.graph11.xaxis1.major.num_rule_ticks = 4
+.plotregion1.graph11.xaxis1.edit_tick 3 15 `"15"', custom tickset(major) editstyle(tickstyle(textstyle(color(none))) tickstyle(linestyle(color(none))) )
+// xaxis1 edits
+
+.plotregion1.graph12.xaxis1.major.num_rule_ticks = 4
+.plotregion1.graph12.xaxis1.edit_tick 3 15 `"15"', custom tickset(major) editstyle(tickstyle(textstyle(color(none))) tickstyle(linestyle(color(none))) )
+// xaxis1 edits
+
+
+// <end>

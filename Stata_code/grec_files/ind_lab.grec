@@ -1,0 +1,39 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: twowaygraph_g
+*! family: twoway
+*! date:  7 May 2024
+*! time: 11:42:32
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.clegend.style.editstyle margin(zero) editcopy
+// clegend margin
+
+.clegend.zaxis.style.editstyle majorstyle(tickstyle(textstyle(size(vsmall)))) editcopy
+.clegend.zaxis.major.label_format = `"%12s"'
+.clegend.zaxis.style.editstyle majorstyle(use_labels(yes)) editcopy
+.clegend.zaxis.style.editstyle majorstyle(alternate(no)) editcopy
+// zaxis edits
+
+.clegend.zaxis.reset_rule 30, tickset(major) ruletype(suggest) 
+// zaxis edits
+
+.title.style.editstyle size(small) editcopy
+// title size
+
+.yaxis1.style.editstyle majorstyle(tickstyle(textstyle(size(small)))) editcopy
+// yaxis1 size
+
+.xaxis1.title.style.editstyle size(small) editcopy
+// title size
+
+.style.editstyle margin(zero) editcopy
+// Graph margin
+
+
+// <end>

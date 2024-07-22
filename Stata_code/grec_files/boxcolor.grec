@@ -1,0 +1,31 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: bygraph_g
+*! family: by
+*! date: 14 Jul 2024
+*! time: 00:10:51
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.plotregion1.plotregion1[1].boxes[1].style.editstyle pstyle(area(shadestyle(color(stc5)))) editcopy
+.plotregion1.plotregion1[1].boxes[1].style.editstyle pstyle(area(linestyle(color(stc5)))) editcopy
+// boxes[1] color
+
+.plotregion1.plotregion1[1].boxes[1].style.editstyle pstyle(area(shadestyle(color(stc6)))) editcopy
+.plotregion1.plotregion1[1].boxes[1].style.editstyle pstyle(area(linestyle(color(stc6)))) editcopy
+// boxes[1] color
+
+.plotregion1.plotregion1[1].outsides[1].style.editstyle marker(fillcolor(stc5)) editcopy
+.plotregion1.plotregion1[1].outsides[1].style.editstyle marker(linestyle(color(stc5))) editcopy
+// outsides[1] edits
+
+.plotregion1.plotregion1[1].outsides[1].style.editstyle marker(fillcolor(stc6)) editcopy
+.plotregion1.plotregion1[1].outsides[1].style.editstyle marker(linestyle(color(stc6))) editcopy
+// outsides[1] edits
+
+
+// <end>

@@ -1,0 +1,149 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: combinegraph_g
+*! family: combine
+*! date:  1 Jun 2024
+*! time: 19:35:04
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.Edit , cmd(.set_cols = 6) cmd(.set_rows = 0) cmd(.holes = "6 ") 
+// Graph edits
+
+// Graph edits
+
+.plotregion1.graph11.move clegend above 7 10
+// clegend grid reposition
+
+.plotregion1.graph11.move clegend rightof 8 10
+// clegend grid reposition
+
+.plotregion1.graph11.move clegend rightof 8 11
+// clegend grid reposition
+
+.plotregion1.graph11.clegend.move zaxis rightof 3 2
+// zaxis grid reposition
+
+.plotregion1.graph11.clegend.move zaxis rightof 3 3
+// zaxis grid reposition
+
+.plotregion1.move graph11 rightof 2 6
+// graph11 grid reposition
+
+.plotregion1.graph11.xaxis1.draw_view.setstyle, style(no)
+// xaxis1 edits
+
+.plotregion1.graph11.plotregion1.draw_view.setstyle, style(no)
+// plotregion1 edits
+
+.plotregion1.graph11.yaxis1.draw_view.setstyle, style(no)
+// yaxis1 edits
+
+.plotregion1.graph11.subtitle.draw_view.setstyle, style(no)
+// subtitle edits
+
+.plotregion1.graph11.title.draw_view.setstyle, style(no)
+// title edits
+
+.plotregion1.graph11.note.draw_view.setstyle, style(no)
+// note edits
+
+.plotregion1.graph11.clegend.move zaxis rightof 3 4
+// zaxis grid reposition
+
+.plotregion1.graph1.clegend.zaxis.title.draw_view.setstyle, style(no)
+.plotregion1.graph1.clegend.zaxis.title.fill_if_undrawn.setstyle, style(no)
+// title edits
+
+.plotregion1.graph1.clegend.zaxis.title.fill_if_undrawn.setstyle, style(no)
+// title fill
+
+.plotregion1.graph1.clegend.draw_view.setstyle, style(no)
+// clegend edits
+
+// clegend edits
+
+.plotregion1.graph2.clegend.draw_view.setstyle, style(no)
+// clegend edits
+
+.plotregion1.graph3.clegend.draw_view.setstyle, style(no)
+// clegend edits
+
+.plotregion1.graph4.clegend.draw_view.setstyle, style(no)
+// clegend edits
+
+.plotregion1.graph5.clegend.draw_view.setstyle, style(no)
+// clegend edits
+
+.plotregion1.graph6.clegend.draw_view.setstyle, style(no)
+// clegend edits
+
+.plotregion1.graph7.clegend.draw_view.setstyle, style(no)
+// clegend edits
+
+.plotregion1.graph8.clegend.draw_view.setstyle, style(no)
+// clegend edits
+
+.plotregion1.graph9.clegend.draw_view.setstyle, style(no)
+// clegend edits
+
+.plotregion1.graph10.clegend.draw_view.setstyle, style(no)
+// clegend edits
+
+.plotregion1.Contract graph11  right 1
+// graph11 edits
+
+.plotregion1.graph11.clegend.zaxis.title.DragBy -22.05493924986797 2.377179080824116
+// title reposition
+
+.plotregion1.graph11.clegend.DragBy -23.77179080824088 .3961965134706891
+// clegend reposition
+
+.plotregion1.graph11.clegend.zaxis.title.DragBy 22.18700475435816 -1.71685155837298
+// title reposition
+
+.plotregion1.graph11.clegend.DragBy .5282620179609411 3.037506603275195
+// clegend reposition
+
+.plotregion1.graph11.draw_view.setstyle, style(no)
+// graph11 edits
+
+.plotregion1.graph11.draw_view.setstyle, style(yes)
+.plotregion1.graph11.fill_if_undrawn.setstyle, style(yes)
+// graph11 edits
+
+.plotregion1.graph11.clegend.style.editstyle margin(vsmall) editcopy
+// clegend margin
+
+.style.editstyle declared_ysize(3.5) editcopy
+// Graph size
+
+.style.editstyle declared_ysize(3) editcopy
+// Graph size
+
+.style.editstyle declared_xsize(7.6) editcopy
+// Graph size
+
+.style.editstyle declared_xsize(7.7) editcopy
+// Graph size
+
+// Graph size
+
+.plotregion1.graph11.clegend.DragBy 1.423726943409527 -32.33894057173055
+// clegend reposition
+
+.gmetric_mult = 1.2
+// Graph edits
+
+.gmetric_mult = 1.4
+// Graph edits
+
+.plotregion1.graph11.clegend.DragBy 0 4.881349520261171
+// clegend reposition
+
+
+// <end>

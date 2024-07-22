@@ -1,0 +1,27 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: bygraph_g
+*! family: combine
+*! date: 14 Jul 2024
+*! time: 00:42:07
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.b2title.text = {}
+.b2title.text.Arrpush `"Number of survey clusters removed from estimating sample (log)"'
+// bottom 2 edits
+
+.b2title.text = {}
+.b2title.text.Arrpush `"Number of survey clusters removed from estimating sample (log, rounded)"'
+// bottom 2 edits
+
+.b2title.text = {}
+.b2title.text.Arrpush `"Number of survey clusters removed from estimating sample (log)"'
+// bottom 2 edits
+
+
+// <end>

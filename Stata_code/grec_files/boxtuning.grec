@@ -1,0 +1,34 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: bygraph_g
+*! family: by
+*! date: 13 Jul 2024
+*! time: 22:51:59
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.plotregion1.plotregion1[1].outsides[161].style.editstyle marker(size(vtiny)) editcopy
+// outsides[161] size
+
+.plotregion1.scaleaxis[1].reset_rule -1 1 0.5 , tickset(major) ruletype(range) 
+// scaleaxis[1] edits
+
+.plotregion1.scaleaxis[6].reset_rule -1 1 0.5 , tickset(major) ruletype(range) 
+// scaleaxis[6] edits
+
+.b2title.text = {}
+.b2title.text.Arrpush Settlement size (log)
+// bottom 2 edits
+
+.b2title.style.editstyle size(vsmall) editcopy
+// bottom 2 size
+
+.b2title.style.editstyle size(small) editcopy
+// bottom 2 size
+
+
+// <end>

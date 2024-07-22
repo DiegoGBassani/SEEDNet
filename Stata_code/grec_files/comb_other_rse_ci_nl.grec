@@ -1,0 +1,53 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: combinegraph_g
+*! family: combine
+*! date: 10 Jul 2024
+*! time: 18:22:23
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.plotregion1.graph1.yaxis1.title.text = {}
+.plotregion1.graph1.yaxis1.title.text.Arrpush `"MAD/max(DHS)"'
+.plotregion1.graph1.yaxis1.title.text.Arrpush `"(pred-dir)/(max(dir))"'
+.plotregion1.graph1.yaxis1.title.text.Arrpush `"(adm.L1)"'
+// title edits
+
+// title edits
+
+.plotregion1.graph2.yaxis1.title.text = {}
+.plotregion1.graph2.yaxis1.title.text.Arrpush `"MAD/max(LIDW)"'
+.plotregion1.graph2.yaxis1.title.text.Arrpush `"(pred-dir)/(max(pred));"'
+.plotregion1.graph2.yaxis1.title.text.Arrpush `"(adm.L1)"'
+// title edits
+
+.plotregion1.graph5.yaxis1.title.text = {}
+.plotregion1.graph5.yaxis1.title.text.Arrpush `"Mean Abs. Diff."'
+.plotregion1.graph5.yaxis1.title.text.Arrpush `"(pred-dir)/(max(dir));"'
+.plotregion1.graph5.yaxis1.title.text.Arrpush `"(adm.L2)"'
+// title edits
+
+.plotregion1.graph6.yaxis1.title.text = {}
+.plotregion1.graph6.yaxis1.title.text.Arrpush `"Mean Abs. Diff."'
+.plotregion1.graph6.yaxis1.title.text.Arrpush `"(pred-dir)/(max(pred));"'
+.plotregion1.graph6.yaxis1.title.text.Arrpush `"(adm.L2)"'
+// title edits
+
+.plotregion1.graph9.yaxis1.title.text = {}
+.plotregion1.graph9.yaxis1.title.text.Arrpush `"MAD/max(DHS)"'
+.plotregion1.graph9.yaxis1.title.text.Arrpush `"(pred-dir)/(max(dir));"'
+.plotregion1.graph9.yaxis1.title.text.Arrpush `"(settl.)"'
+// title edits
+
+.plotregion1.graph10.yaxis1.title.text = {}
+.plotregion1.graph10.yaxis1.title.text.Arrpush `"MAD/max(LIDW)"'
+.plotregion1.graph10.yaxis1.title.text.Arrpush `"(pred-dir)/(max(pred));"'
+.plotregion1.graph10.yaxis1.title.text.Arrpush `"(settl.)"'
+// title edits
+
+
+// <end>

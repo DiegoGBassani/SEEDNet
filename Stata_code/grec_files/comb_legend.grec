@@ -1,0 +1,53 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: combinegraph_g
+*! family: combine
+*! date:  7 May 2024
+*! time: 15:11:57
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.plotregion1.graph2.clegend.zaxis.style.editstyle majorstyle(tickstyle(textstyle(size(small)))) editcopy
+.plotregion1.graph2.clegend.zaxis.style.editstyle majorstyle(tickstyle(textgap(medsmall))) editcopy
+.plotregion1.graph2.clegend.zaxis.style.editstyle majorstyle(use_labels(yes)) editcopy
+.plotregion1.graph2.clegend.zaxis.style.editstyle majorstyle(alternate(no)) editcopy
+// zaxis edits
+
+.plotregion1.graph2.clegend.zaxis.reset_rule 30, tickset(major) ruletype(suggest) 
+// zaxis edits
+
+.plotregion1.graph2.clegend.zaxis.style.editstyle title_gap(small) editcopy
+// zaxis gap
+
+.plotregion1.graph2.plotregion1.draw_view.setstyle, style(no)
+// plotregion1 edits
+
+.plotregion1.graph2.yaxis1.draw_view.setstyle, style(off)
+// yaxis1 edits
+
+.plotregion1.graph2.xaxis1.title.draw_view.setstyle, style(no)
+.plotregion1.graph2.xaxis1.title.fill_if_undrawn.setstyle, style(no)
+// title edits
+
+.plotregion1.graph2.xaxis1.position.setstyle, style(below)
+.plotregion1.graph2.xaxis1.draw_view.setstyle, style(off)
+// xaxis1 edits
+
+.plotregion1.graph2.clegend.zaxis.style.editstyle draw_major_grid(no) editcopy
+// zaxis edits
+
+.plotregion1.graph2.clegend.zaxis.style.editstyle majorstyle(tickstyle(show_ticks(no))) editcopy
+// zaxis edits
+
+.plotregion1.graph2.clegend.style.editstyle margin(zero) editcopy
+// clegend margin
+
+.plotregion1.graph1.style.editstyle margin(tiny) editcopy
+// graph1 margin
+
+
+// <end>

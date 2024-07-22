@@ -1,0 +1,21 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: combinegraph_g
+*! family: combine
+*! date:  7 May 2024
+*! time: 15:29:54
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.plotregion1.graph2.SetAspectRatio 1.3
+// graph2 edits
+
+.plotregion1.graph2.style.editstyle margin(zero) editcopy
+// graph2 margin
+
+
+// <end>

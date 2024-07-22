@@ -1,0 +1,33 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: twowaygraph_g
+*! family: twoway
+*! date: 18 Jun 2024
+*! time: 13:52:05
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.caption.style.editstyle size(vsmall) editcopy
+// caption size
+
+.caption.text = {}
+.caption.text.Arrpush note: no observations
+// caption edits
+
+.move caption on 7 5
+// caption grid reposition
+
+.move caption on 7 5
+// caption grid reposition
+
+.caption.style.editstyle box_alignment(center) editcopy
+// caption compass position
+
+// caption compass position
+
+
+// <end>

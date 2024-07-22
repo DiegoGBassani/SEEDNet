@@ -1,0 +1,21 @@
+StataFileTM:00001:01100:GREC:                          :
+00008:00008:00001:
+*! classname: bygraph_g
+*! family: by
+*! date: 20 May 2024
+*! time: 12:57:26
+*! graph_scheme: stcolor
+*! naturallywhite: 1
+*! end
+
+// File created by Graph Editor Recorder.
+// Edit only if you know what you are doing.
+
+.plotregion1.subtitle[4].style.editstyle drawbox(no) editcopy
+// subtitle[4] draw bounding box
+
+.plotregion1.plotregion1[2].outsides[111].style.editstyle marker(symbol(point)) editcopy
+// outsides[111] symbol
+
+
+// <end>
