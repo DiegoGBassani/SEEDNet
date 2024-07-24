@@ -6,47 +6,52 @@ Repository containing code and data for replication of the manuscript: "Multi-co
 
 There are two sets of instructions contained in this repository. 
 
-1. Replication of the manuscript results and technical validation. It is restricted to 15 indicator and 10 countries included in the manuscript. 
+A. Replication of the manuscript results and technical validation. It is restricted to 15 indicator and 10 countries included in the manuscript. 
 
-2. Estimation of the 15 indicators for the most recent georeferenced DHS survey available for any country. It reproduces the results found in the library presented with this paper. 
+B. Estimation of the 15 indicators for the most recent georeferenced DHS survey available for any country. It reproduces the results found in the library presented with this paper. 
 
 The processed files are available on Borealis: (Add url)
 
-# For replication of the manuscript estimates and technical validation:
+# A. For replication of the manuscript estimates and technical validation:
 
 ## Where to start: 
 
-1 - Select indicators and create the survey cluster DHS files with the scripts available with the accompanying detailed instructions in the [R_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/R_code) folder.
+### 1 - Select indicators and create the survey cluster DHS files with the scripts available with the accompanying detailed instructions in the [R_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/R_code) folder.
 
 
 
 
-2 - Save the resulting csv file, it should look like this one ([dataset_cluster.csv](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code/Data/Globe/dataset_cluster.csv)) if you are replicating our findings. It will be larger if you include other countries or indicators.
+### 2 - Save the resulting csv file, it should look like this one ([dataset_cluster.csv](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code/Data/Globe/dataset_cluster.csv)) if you are replicating our findings. It will be larger if you include other countries or indicators.
 
 
 
-3 - To replicate the estimation and validation steps, follow the [Instructions](https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/ReadMe_SDManuscript.md) within the [Python_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code) folder: 
+### 3 - To replicate the estimation and validation steps, follow the [Instructions](https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/ReadMe_SDManuscript.md) within the [Python_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code) folder: 
 
 
-# For estimation of the 15 indicators for the most recent georeferenced DHS survey available among all DHS countries, or to add indicators and countries for your own project:
+# B. For estimation of the 15 indicators for the most recent georeferenced DHS survey available among all DHS countries, or to add indicators and countries for your own project:
 
 ## Where to start: 
 
-1 - Select indicators and create the survey cluster DHS files with the scripts available with the accompanying detailed instructions in the [R_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/R_code) folder.
+### 1 - Select indicators and create the survey cluster DHS files with the scripts available with the accompanying detailed instructions in the [R_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/R_code) folder.
 
- 1.1. - Obtain a list of the most recent surveys from the DHS API (see links below), save it as a .csv file with 2 entries, country and year, as in this [example](https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/Data/Globe/list_of_countries.csv) from the replication instructions (above).
- 
- A current list of the completed georeferenced surveys can be viewed and downloaded using the DHS API: 
- [All completed georeferenced surveys from DHS API as html](https://api.dhsprogram.com/rest/dhs/surveys?surveyCharacteristicIds=26&surveyStatus=completed&surveytype=DHS&f=html)
- and the table can be dowloaded as a csv here:
- [All completed georeferenced surveys from DHS API as csv](https://api.dhsprogram.com/rest/dhs/surveys?surveyCharacteristicIds=26&surveyStatus=completed&surveytype=DHS&f=csv)
+1.1. - Obtain a list of the most recent surveys from the DHS API (see links below), save it as a .csv file with 2 entries, country and year, as in this [example](https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/Data/Globe/list_of_countries.csv) from the replication instructions (above).
 
- 1.2 - Follow the instructions in the [R_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/R_code) folder to produce the dataset_cluster.csv file.
+A current list of the completed georeferenced surveys can be viewed and downloaded using the DHS API: 
 
-2 - Save the resulting csv file, it should have a similar structure as this one ([dataset_cluster.csv](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code/Data/Globe/dataset_cluster.csv)) but with your selection of countries and indicators.
+[All completed georeferenced surveys from DHS API as html](https://api.dhsprogram.com/rest/dhs/surveys?surveyCharacteristicIds=26&surveyStatus=completed&surveytype=DHS&f=html) 
+
+The data can be dowloaded as a csv here:
+
+[All completed georeferenced surveys from DHS API as csv](https://api.dhsprogram.com/rest/dhs/surveys?surveyCharacteristicIds=26&surveyStatus=completed&surveytype=DHS&f=csv)
 
 
-3 - To generate your own estimates of indicators by settlement follow the [Instructions](https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/ReadMe_SDManuscript.md) within the [Python_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code) folder
+1.2 - Follow the instructions in the [R_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/R_code) folder to produce the dataset_cluster.csv file.
+  
+
+### 2 - Save the resulting csv file, it should have a similar structure as this one ([dataset_cluster.csv](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code/Data/Globe/dataset_cluster.csv)) but with your selection of countries and indicators.
+
+
+### 3 - To generate your own estimates of indicators by settlement follow the [Instructions](https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/ReadMe_SDManuscript.md) within the [Python_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code) folder
 
 
 
