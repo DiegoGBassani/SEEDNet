@@ -286,7 +286,7 @@ def download_ghs_smod_files(*years, publish_year='2023'):
 
 def download_ghs_pop_file():
         # Define the subfolder to save the downloaded files
-        subfolder = data_root + 'Globe/' # '/home/amir/Desktop/myData/' #
+        subfolder = data_root + 'Globe/'
 
         # Create the subfolder if it doesn't exist
         if not os.path.exists(subfolder):
@@ -486,14 +486,15 @@ def ghsl_year(year: str) -> str:
     # Calculate and return the nearest year by subtracting the remainder from the next multiple of 5
     return str((quotient + 1) * 5 - remainder)
 
-def ghsl_year(year: str):
+# Use this version for replication, the version above for new estimates.
+# def ghsl_year(year: str):
     # Convert the input year from a string to an integer and compare it with 2015
-    if int(year) < 2015:
+#     if int(year) < 2015:
         # If the input year is less than 2015, return '2010'
-        return '2010'
-    else:
+#         return '2010'
+#     else:
         # If the input year is greater than or equal to 2015, return '2015'
-        return '2015'
+#         return '2015'
 
 
 def indicator_raster(country :str, year :str, indicator: str):
