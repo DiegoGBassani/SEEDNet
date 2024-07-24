@@ -120,7 +120,9 @@ This script will execute all estimation files (main1.py, main1_1.py, main23.py, 
 
 6.1 The Scripts for Validation of LIDW and analysis of the validation output should be executed after scripts described in 5.1 have been executed. They are necessary to replicate the validation results included in the accompanying manuscript:
 
- program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py', 'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py']
+program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py',
+                'main12.py', 'main13.py', 'main14.py', 'main15.py',
+                'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py', 'main3_1.py', 'main4_1.py']
 
             6.1.1 - [file main3.py] - Validation results at the survey cluster network level
             6.1.2 - [file main4.py] - Summarizes validation results at the survey cluster network level
@@ -138,11 +140,20 @@ This script will execute all estimation files (main1.py, main1_1.py, main23.py, 
             6.1.13 - [file main28.py] - Benchmark comparison of the out-of-sample predictions with Utazi, 2018 Measles immunization coverage in Cambodia, Nigeria and Mozambique.
             6.1.14 - [file main29.py] - Summarizes benchmark comparison of the out-of-sample predictions with Utazi, 2018 Measles immunization coverage in Cambodia, Nigeria and Mozambique.
 
+            6.1.15 - [file main3_1.py] - 
+            6.1.16 - [file main4_1.py] - 
+            
+            6.1.16 - [file main12.py] - 
+            6.1.17 - [file main13.py] - 
+            6.1.18 - [file main14.py] - 
+            6.1.19 - [file main15.py] - 
+            
+
 For convenience, we've created a script that allows users to run all Validation steps in sequence. To use it:
 
 Ensure you're in the project directory. Open the run_sequence_timer.py file and uncomment the following line
 
- program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py', 'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py']
+program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py','main12.py', 'main13.py', 'main14.py', 'main15.py', 'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py', 'main3_1.py', 'main4_1.py']
 
 Run the following command:
 
@@ -161,7 +172,7 @@ They are necessary to replicate the validation results included in the accompany
             7.1.2 - [file main25.py] - Computes the population of the settlements for the year of the survey, in addition to the fraction of the national population in each settlement.
             7.1.3 - [file main26.py] - Extracts the UCDB population settlements (entities) from the UCDB database for validation of the settlement identification process.
             7.1.4 - [file main27.py] - Identifies the overlaps between polygons from our settlement identification method and UCDB settlement polygons
-            7.1.5 - [file main30.py] - Exports settlement polygons as .png files with random colors assigned to each settlement.
+            7.1.5 - [file main30.py] - Exports settlement polygons as .png files with random colors assigned to each settlement (Optional).
             
 For convenience, we've created a script that allows users to run all these additional steps in sequence. To use it:
 
