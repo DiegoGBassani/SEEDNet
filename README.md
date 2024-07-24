@@ -28,7 +28,7 @@ The processed files are available on Borealis: (Add url)
 3 - To replicate the estimation and validation steps, follow the [Instructions](https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/ReadMe_SDManuscript.md) within the [Python_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code) folder: 
 
 
-# For estimation of the 15 indicators for the most recent georeferenced DHS survey available among all DHS countries:
+# For estimation of the 15 indicators for the most recent georeferenced DHS survey available among all DHS countries, or to add indicators and countries for your own project:
 
 ## Where to start: 
 
