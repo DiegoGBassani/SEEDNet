@@ -193,5 +193,8 @@ Run the following command:
 
 This script will execute all estimation files (main2.py, main25.py, main26.py, main27.py, main30.py) in order. Each step will print a completion message when finished.
 
+The dependencies of the scripts above are shown in the schematic below: 
+
+[dependencies1.pdf](https://github.com/user-attachments/files/16360142/dependencies1.pdf)
 
 
