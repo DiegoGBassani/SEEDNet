@@ -1,3 +1,7 @@
+The code below should be ran after obtaining the files with the indicator values for each country and by survey cluster from the DHS surveys (See instructions in R-Code folder):
+For replication of the manuscript estimation and analysis without replicating the exctraction of the summary data from the DHS surveys use the 'dataset_cluster.csv' file that can be found in the Data/Globe folder. 
+
+
 
 1 - Create a virtual environment that includes the packages listed in the 'clean_environment.yml' file inside the 'requirements' folder.
 
@@ -111,8 +115,7 @@ This script will execute all estimation files (main1.py, main1_1.py, main23.py, 
 
 6.1 The Scripts for Validation of LIDW and analysis of the validation output should be executed after scripts described in 5.1 have been executed. They are necessary to replicate the validation results included in the accompanying manuscript:
 
-# program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py', 
-                  'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py']
+# program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py', 'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py']
 
             6.1.1 - [file main3.py] - Validation results at the survey cluster network level
             6.1.2 - [file main4.py] - Summarizes validation results at the survey cluster network level
@@ -134,8 +137,7 @@ For convenience, we've created a script that allows users to run all Validation 
 
 Ensure you're in the project directory. Open the run_sequence_timer.py file and uncomment the following line
 
-# program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py', 
-                  'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py']
+# program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py', 'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py']
 
 Run the following command:
 
@@ -146,6 +148,7 @@ This script will execute all estimation files (main3.py, main4.py, main5.py, mai
 
 7.1 The Scripts for Other purposes should be executed after scripts described in 5.1 and 6.1 have been executed. 
 They are necessary to replicate the validation results included in the accompanying manuscript and generate plots:
+
 # program_list = ['main2.py', 'main25.py', 'main26.py', 'main27.py', 'main30.py']
 
             7.1.1 - [file main2.py] - Plots the indicator rasters with the national borders
@@ -157,6 +160,7 @@ They are necessary to replicate the validation results included in the accompany
 For convenience, we've created a script that allows users to run all these additional steps in sequence. To use it:
 
 Ensure you're in the project directory. Open the run_sequence_timer.py file and uncomment the line 
+
 # program_list = ['main2.py', 'main25.py', 'main26.py', 'main27.py', 'main30.py']
 
 Run the following command:
