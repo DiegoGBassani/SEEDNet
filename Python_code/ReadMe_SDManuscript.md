@@ -2,7 +2,10 @@
 
 The code below should be ran after obtaining the files with the indicator values for each country and by survey cluster from the DHS surveys (See instructions in R-Code folder):
 
-For replication of the manuscript estimation and analysis without replicating the exctraction of the summary data from the DHS surveys use the 'dataset_cluster.csv' file that can be found in the Data/Globe folder. 
+For replication of the manuscript estimation and analysis without replicating the exctraction of the summary data from the DHS surveys use the 'dataset_cluster.csv' file that can be found in the Data/Globe folder 
+
+Path here: 
+https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/Data/Globe/dataset_cluster.csv
 
 
 ## 1 - Create a virtual environment that includes the packages listed in the 'clean_environment.yml' file inside the 'requirements' folder.
@@ -55,6 +58,10 @@ For replication of the manuscript estimation and analysis without replicating th
         https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/Data/Globe/list_of_indicators.csv
         https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/Data/Globe/dataset_cluster.csv
         https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/Data/Globe/list_of_countries.csv
+
+       As mentioned above, for the replication of the manuscript estimation and analysis without replicating the exctraction of the summary data from the DHS surveys use the 'dataset_cluster.csv' file that can be found in the path below:
+       
+        https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/Data/Globe/dataset_cluster.csv
 
 ## 4 - The following steps involve running a series of Python scripts that will process the data, generate additional files,
     and prepare them for your main analysis. Each script builds upon the previous one, so it's important to run them in order:
