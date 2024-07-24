@@ -27,6 +27,8 @@ The processed files are available on Borealis: (Add url)
 
 ### 3 - To replicate the estimation and validation steps, follow the [Instructions](https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/ReadMe_SDManuscript.md) within the [Python_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code) folder: 
 
+### 4 - To produce the tables and graphs shown in the manuscript follow the instructions in the [Stata_code] (https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Stata_code) folder. The 5 files found in the input_files folder are produced after running the [Python_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code) and will be found in the Results folder. The 6th file [summary_validation_data.csv](https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Stata_code/input_files/summary_validation_data.csv) is one of the outputs of the [R_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/R_code).
+
 
 # B. For estimation of the 15 indicators for the most recent georeferenced DHS survey available among all DHS countries, or to add indicators and countries for your own project:
 
