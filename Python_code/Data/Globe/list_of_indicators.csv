@@ -1,0 +1,16 @@
+indicator,name
+cov_ph_electric,Household with Electricity
+cov_sourcewater,Improved Water Source
+cov_iodized_salt,Iodized Salt Intake in Household
+cov_anemia_women,Prevalence of any Anemia in Women
+cov_anc42,Antenatal Care Visits (4+) during Pregnancy
+cov_lbw,Low Birth Weight Prevalence
+cov_exclusivelybf,Exclusive Breastfeeding (0-6 months)
+cov_ch_bcg_either,BCG Immunization (12-23 months)
+cov_ch_dtp,DPT3 Immunization (12-23 months)
+cov_ch_meas_either,Measles Immunization (12-23 months)
+cov_itn_u5,Children (0-59 months) Slept under Mosquito Net
+cov_ORS_treatment,Diarrhea Treatment with ORS (0-59 months)
+cov_stunted,Stunting Prevalence (0-59 months)
+cov_wasted,Wasting Prevalence (0-59 months)
+cov_anemia_children,Prevalence of any Anemia in Children (0-59 months)
