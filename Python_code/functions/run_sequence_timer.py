@@ -6,13 +6,30 @@ import os
 # User to uncomment the sequence to be computed, see instructions below regarding dependencies and requirements.
 # Complete program list, including data preparation + downloads of geospatial files required:
 
-# program_list = [ 'prep0.py', 'prep1.py', 'prep2.py', 'prep3.py', 'prep4.py', 'prep5.py', 'prep6.py', 'prep7.py',
-# program_list = [ 'main1.py', 'main1_1.py', 'main23.py', 'main24.py']
-program_list = [ 'main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py',
-                 'main11.py', 'main12.py', 'main13.py', 'main14.py', 'main15.py',
-                 'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py',
-                 'main3_1.py', 'main4_1.py',
-                 'main2.py', 'main25.py', 'main26.py', 'main27.py', 'main30.py']
+# Data preparation, settlement identification:
+# program_list = ['prep0.py', 'prep1.py', 'prep2.py', 'prep3.py', 'prep4.py', 'prep5.py', 'prep6.py', 'prep7.py']
+
+# Estimation:
+# program_list = ['main1.py', 'main1_1.py', 'main23.py', 'main24.py']
+
+
+# Validation:
+# program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py',
+#                'main12.py', 'main13.py', 'main14.py', 'main15.py',
+#                'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py', 'main3_1.py', 'main4_1.py']
+
+# Other purposes (plotting, etc):
+# program_list = ['main2.py', 'main25.py', 'main26.py', 'main27.py', 'main30.py']
+
+# Full execution:
+# Data preparation, settlement identification, estimation and validation
+# program_list = ['prep0.py', 'prep1.py', 'prep2.py', 'prep3.py', 'prep4.py', 'prep5.py', 'prep6.py', 'prep7.py'
+#                 'main1.py', 'main1_1.py', 'main23.py', 'main24.py'
+#                 'main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py',
+#                 'main12.py', 'main13.py', 'main14.py', 'main15.py',
+#                 'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py', 'main3_1.py', 'main4_1.py',
+#                 'main2.py', 'main25.py', 'main26.py', 'main27.py', 'main30.py']
+
 
 ## For partial execution, select one of the program lists below.
 
@@ -37,7 +54,9 @@ program_list = [ 'main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'ma
 # program_list = ['main1.py', 'main1_1.py', 'main23.py', 'main24.py']
 
 # 3 - Scripts for Validation of lidw and analysis the validation output:
-# program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py', 'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py']
+# program_list = ['main3.py', 'main4.py', 'main5.py', 'main6.py', 'main7.py', 'main8.py', 'main9.py', 'main10.py', 'main11.py',
+#                'main12.py', 'main13.py', 'main14.py', 'main15.py',
+#                'main20.py', 'main21.py', 'main22.py', 'main28.py', 'main29.py', 'main3_1.py', 'main4_1.py']
 
 # 4 - Scripts for Other purposes (plotting, etc):
 # program_list = ['main2.py', 'main25.py', 'main26.py', 'main27.py', 'main30.py']
