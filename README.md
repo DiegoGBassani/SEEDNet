@@ -1,6 +1,6 @@
-# SD_2024: Darooneh et. al. Multi-country settlement level database of health indicators and covariate-free estimation method. 
+# SD_2024: Darooneh et. al. SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis. 
 
-Repository containing code and data for replication of the manuscript: "Multi-country settlement level database of health indicators and covariate-free estimation method"
+Repository containing code and data for replication of the manuscript: "SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis"
 
 # Overview:
 
@@ -58,11 +58,11 @@ The data can be dowloaded as a csv here:
 
 
 # Please cite this work as: 
-Darooneh, A.H. et al. (2024) ‘Multi-country settlement level database of health indicators and a covariate-free estimation method.’ Available at: https://doi.org/TBC.
+Darooneh, A.H. et al. (2024) ‘SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis.’ Available at: https://doi.org/TBC.
 
 # citation
 @misc{darooneh_2024,
-	title = {Multi-country settlement level database of health indicators and a covariate-free estimation method.},
+	title = {SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis},
 	doi = {TBC},
 	number = {{SDATA}-24-01804},
   year = {2024},
