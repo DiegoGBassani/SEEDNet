@@ -1,4 +1,4 @@
-# SD_2024_
+# SD_2024: Darooneh et. al. Multi-country settlement level database of health indicators and covariate-free estimation method. 
 
 Repository containing code and data for replication of the manuscript: "Multi-country settlement level database of health indicators and covariate-free estimation method"
 
@@ -56,5 +56,18 @@ The data can be dowloaded as a csv here:
 ### 3 - To generate your own estimates of indicators by settlement follow the [Instructions](https://github.com/DiegoGBassani/SD_2024_Code/blob/main/Python_code/ReadMe_SDManuscript.md) within the [Python_code](https://github.com/DiegoGBassani/SD_2024_Code/tree/main/Python_code) folder
 
 
+
+# Please cite this work as: 
+Darooneh, A.H. et al. (2024) ‘Multi-country settlement level database of health indicators and a covariate-free estimation method.’ Available at: https://doi.org/TBC.
+
+# citation
+@misc{darooneh_2024,
+	title = {Multi-country settlement level database of health indicators and a covariate-free estimation method.},
+	doi = {TBC},
+	number = {{SDATA}-24-01804},
+  year = {2024},
+	author = {Darooneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Céline M. and {McLaughlin}, Katie and Cornelius, Sean P. and Bassani, Diego G.},
+	note = {Pre-print of article submitted to Scientific Data},
+}
 
 
