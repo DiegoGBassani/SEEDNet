@@ -61,3 +61,7 @@ source("merge_files.R")
   write.csv(D, "dataset_cluster.csv")
   write.csv(D_region, "dataset_region.csv")
   write.csv(D_country, "dataset_country.csv")
+
+#4.0 Create Validation Dataset
+source("country_to_long.R")
+  #converts the country dataset to long format and produces output: summary_validation_data.csv
