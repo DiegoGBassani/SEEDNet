@@ -1,4 +1,4 @@
-# SD_2024: Darooneh et. al. SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis. 
+# Darooneh et. al. SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis. 
 
 Repository containing code and data for replication of the manuscript: "SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis"
 
