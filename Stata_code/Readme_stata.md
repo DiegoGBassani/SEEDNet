@@ -4,4 +4,18 @@ This repository contains the stata code required to replicate the plots submitte
 
 The files found in the input_files folder are produced after executing the estimation and validation functions that are found in the Python_code folder.
 
-After executing the python code, move the files 
+After executing the python code, move the following files to the input_files folder:
+
+  LOOCV_SETTLEMENTS.csv
+  LOOCV_SETT_DIFF.csv
+  VALIDATION_combined.csv
+  kfold_validation.csv
+  kfold_validation_data.csv (found zipped in this directory)
+  summary_validation_data.csv
+
+The stata .do files can be found in the do_files folder. 
+
+They can be executed individually or through the P1_Runner_all_do_files.do file
+
+Fine tuning of plots has been done with recorded .grec files, those can be found in the grec_files folder.
+
