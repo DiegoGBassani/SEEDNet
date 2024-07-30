@@ -106,6 +106,10 @@ Run the following command:
 
 This script will execute all preparation files (prep0.py through prep7.py) in order. Each step will print a completion message when finished.
 
+The sequence of preparation files is also an option in the run_sequence_timer.py file. To use that, uncomment the line:
+
+        program_list = ['prep0.py', 'prep1.py', 'prep2.py', 'prep3.py', 'prep4.py', 'prep5.py', 'prep6.py', 'prep7.py']
+
 Note: This process may take some time depending on your system and internet connection. Ensure you have a stable connection before starting.
 
 ## 5  - The following steps involve running a series of Python scripts that will conduct the main analysis, including predictions, simulations.
