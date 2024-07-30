@@ -7,11 +7,17 @@ The files found in the input_files folder are produced after executing the estim
 After executing the python code, move the following files to the input_files folder:
 
   LOOCV_SETTLEMENTS.csv
+  
   LOOCV_SETT_DIFF.csv
+  
   VALIDATION_combined.csv
+  
   kfold_validation.csv
+  
   kfold_validation_data.csv (found zipped in this directory)
-  summary_validation_data.csv
+  
+  summary_validation_data.csv (this file is produced using the code found in the R_code folder and is a summary of the indicators from DHS surveys). 
+  
 
 The stata .do files can be found in the do_files folder. 
 
