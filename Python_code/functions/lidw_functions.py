@@ -1,3 +1,4 @@
+"""
 # Project: This code is part of the manuscript "SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis"
 # Manuscript authors: Amir Hossein Darooneh, Jean-Luc Kortenaar, Celine Goulart, Katie McLaughlin, Sean Cornelius, and Diego G. Bassani
 # Suggested citation: Darooneh, A.H., et al. SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis. (2024)
@@ -5,15 +6,19 @@
 # Author: Darooneh, A.H., The Hospital for Sick Children
 # Date Created: 2024-06-19
 # Last Updated:  2024-07-29
-# Description: Functions for settlement identification, LIDW estimation and validation of estimates 
+# Description: Functions for settlement identification, LIDW estimation and validation of estimates
 # ###################
 # Attributions:
 # List any attributions
 # ###################
-                                                                         
+"""
+
 import pandas as pd
 import numpy as np
 import os
+
+import unidecode
+
 os.environ['GDAL_USE_GPU'] = 'YES'
 import sys
 import wget
@@ -45,6 +50,7 @@ import xlsxwriter
 
 import pycountry
 import networkx as nx
+from unidecode import unidecode
 
 warnings.filterwarnings('ignore')
 
@@ -101,7 +107,7 @@ def read_list_of_country_years(path: str = list_of_country_years):
 
     # Create a list of tuples, where each tuple contains a country and its corresponding year
     # result = [(c, str(y)) for c, y in zip(country, year)]
-    result = [(c, str(y)) for c, y in zip(countries, year)]
+    result = [(c, int(y)) for c, y in zip(countries, year)]
 
     # Return the resulting list
     return result
@@ -133,13 +139,35 @@ def dictionary_of_indicators(path: str = list_of_indicators):
 
 def get_country_alpha3_code(name: str):
     name = ' '.join(word.capitalize() for word in name.split())
+    normalized_name = unidecode(name).lower()
+
 
     # Special cases
+    
     special_cases = {
         "Cape Verde": "CPV",
+        "Cabo Verde": "CPV",
         "Congo Democratic Republic": "COD",
+        "Democratic Republic of the Congo": "COD",
+        "DR Congo": "COD",
+        "Niger": "NER",
+        "North Macedonia": "MKD",
+        "Macedonia": "MKD",
+        "Timor-Leste": "TLS",
+        "East Timor": "TLS",
+        "Sao Tome and Principe": "STP",
+        "Curacao": "CUW",
+        "Reunion": "REU",
+
         # Add more special cases here if needed
     }
+
+    if 'ivoire' in normalized_name or 'ivory' in normalized_name:
+        return 'civ', 'CIV'
+
+    if 'congo' in normalized_name and 'democratic' in normalized_name:
+        return 'cod', 'COD'
+
     if name in special_cases:
         code = special_cases[name]
         return code.lower(), code
@@ -147,7 +175,7 @@ def get_country_alpha3_code(name: str):
     try:
         # Attempt to find the country object based on the given name
         countries = pycountry.countries.search_fuzzy(name)
-        country = pycountry.countries.get(name=name)
+        # country = pycountry.countries.get(name=name)
         if countries:
             country = countries[0]
             return country.alpha_3.lower(), country.alpha_3
@@ -157,7 +185,7 @@ def get_country_alpha3_code(name: str):
     except LookupError:
         print(f"Error looking up country: {name}")
         return None, None
-
+"""
         # Extract the three-letter abbreviation (Alpha-3 code) from the country object
         CODE = country.alpha_3
 
@@ -169,7 +197,7 @@ def get_country_alpha3_code(name: str):
     except AttributeError:
         # Handle the case when the country or Alpha-3 code is not found
         return None, None
-
+"""
 def get_country_alpha2_code(name: str):
     name = ' '.join(word.capitalize() for word in name.split())
     try:
@@ -214,8 +242,8 @@ def directory_generator(country: str, year: str):
         os.makedirs(subfolder_result)  # Create the subfolder in the result root
 
     # Create subsubfolders for the given year inside the country subfolders
-    subsubfolder_data = data_root + country + '/' + year  # Construct the path for the subsubfolder in data root
-    subsubfolder_result = result_root + country + '/' + year  # Construct the path for the subsubfolder in result root
+    subsubfolder_data = f"{data_root}{country}/{year}"  # Construct the path for the subsubfolder in data root
+    subsubfolder_result = f"{result_root}/{country}/{year}"  # Construct the path for the subsubfolder in result root
 
     # Check if the subsubfolders for the year exist, and if not, create them
     if not os.path.exists(subsubfolder_data):
@@ -297,33 +325,42 @@ def download_ghs_smod_files(*years, publish_year='2023'):
     return path_to_extracted_files
 
 
-def download_ghs_pop_file():
+def download_ghs_pop_file(year):
+        # Get the nearest GHS year
+        nearest_year = nearest_ghs_year([int(year)])
         # Define the subfolder to save the downloaded files
         subfolder = data_root + 'Globe/'
 
         # Create the subfolder if it doesn't exist
-        if not os.path.exists(subfolder):
-            os.makedirs(subfolder)
+        os.makedirs(subfolder, exist_ok=True)
 
 
         # Construct the URL for downloading the file
-        url = f'https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_POP_GLOBE_R2023A/GHS_POP_E2015_GLOBE_R2023A_4326_30ss/V1-0/GHS_POP_E2015_GLOBE_R2023A_4326_30ss_V1_0.zip'
+        base_url = 'https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_POP_GLOBE_R2023A/'
+        file_url = f'GHS_POP_E{nearest_year}_GLOBE_R2023A_4326_30ss/V1-0/GHS_POP_E{nearest_year}_GLOBE_R2023A_4326_30ss_V1_0.zip'
+        url = base_url + file_url
 
         # Define the path to the downloaded zip file and the folder for extracted file
-        file = subfolder + f'GHS_POP_E2015_GLOBE_R2023A_4326_30ss_V1_0.tif.zip'
-        folder = subfolder + f'GHS_POP_E2015_GLOBE_R2023A_4326_30ss_V1_0'
+        file = subfolder + f'GHS_POP_E{nearest_year}_GLOBE_R2023A_4326_30ss_V1_0.zip'
+        folder = subfolder + f'GHS_POP_E{nearest_year}_GLOBE_R2023A_4326_30ss_V1_0'
+        tif_file = folder + f'/GHS_POP_E{nearest_year}_GLOBE_R2023A_4326_30ss_V1_0.tif'
 
-        # Download the file using wget
-        wget.download(url, file)
+        # Check if the file already exists
+        if not os.path.exists(tif_file):
+            print(f"Downloading population data for year {nearest_year}")
+            # Download the file using wget
+            wget.download(url, file)
 
+            # Extract the downloaded zip file
+            with zipfile.ZipFile(file, 'r') as zip_ref:
+                zip_ref.extractall(folder)
 
-        # Extract the downloaded zip file
-        with zipfile.ZipFile(file, 'r') as zip_ref:
-            zip_ref.extractall(folder)
+            # Remove the downloaded zip file
+            os.remove(file)
+        else:
+            print(f"Population data for year {nearest_year} (nearest to {year}) already exists")
 
-
-        # Remove the downloaded zip file
-        os.remove(file)
+        return tif_file
 
 def download_ghs_ucdb_file():
 
@@ -365,7 +402,8 @@ def download_ghs_ucdb_file():
 
             layer_name = gpkg_path[m:-5]
 
-            shp_path = shp_folder + f'/'+layer_name+'.shp'
+            # shp_path = shp_folder + f'/'+layer_name+'.shp'
+            shp_path = f"{shp_folder}/{layer_name}.shp"
 
             convert_gpkg_to_shp(gpkg_path, layer_name, shp_path)
 
@@ -440,7 +478,11 @@ def extract_ghs_country_population_raster(x):
 
     # Define the path to the global settlement TIFF file
 
-    path_to_globe_tiff = data_root + 'Globe/GHS_POP_E2015_GLOBE_R2023A_4326_30ss_V1_0/GHS_POP_E2015_GLOBE_R2023A_4326_30ss_V1_0.tif'
+    #path_to_globe_tiff = data_root + 'Globe/GHS_POP_E2015_GLOBE_R2023A_4326_30ss_V1_0/GHS_POP_E2015_GLOBE_R2023A_4326_30ss_V1_0.tif'
+    path_to_globe_tiff = download_ghs_pop_file(year)
+    # Extract the actual year used from the file path
+    actual_year = path_to_globe_tiff.split('_E')[-1].split('_')[0]
+
 
     # Obtain the path to the country shapefile using the country_shapefile(country) function
     path_to_country_shp = country_shapefile(country)
@@ -450,13 +492,14 @@ def extract_ghs_country_population_raster(x):
         polygons = [[feature["geometry"]] for feature in shapefile]  # List of geometries for the country
 
     # Define the folder path where the output settlement shapefile will be saved
-    subfolder = data_root + country + '/'+year+'/'
+    subfolder = f"{data_root}{country}/{year}/"
 
     # Check if the shape folder exists, and if not, create it
     if not os.path.exists(subfolder):
         os.makedirs(subfolder)
 
-    output = subfolder + code + '_GHS_POP_E2015_R2023_30arcsec.tif'
+    #output = subfolder + code + '_GHS_POP_E2015_R2023_30arcsec.tif'
+    output = subfolder + f'{code}_GHS_POP_E{actual_year}_R2023_30arcsec.tif'
 
     # Open the global settlement raster TIFF and crop it using the country boundaries
     with rasterio.open(path_to_globe_tiff) as src:
@@ -487,17 +530,12 @@ def extract_ghs_country_population_raster(x):
 def ghsl_year(year: str) -> str:
     """
     This function takes a year as a string, converts it to an integer,
-    calculates the nearest year by dividing it by 5 and then adjusting
-    the result to return a year rounded to the nearest 0 or 5.
+    calculates the nearest year ending in 0 or 5.
     """
     # Convert the input year from a string to an integer
     year_int = int(year)
-
-    # Calculate the quotient and remainder of the division of the input year by 5
-    quotient, remainder = divmod(year_int, 5)
-
-    # Calculate and return the nearest year by subtracting the remainder from the next multiple of 5
-    return str((quotient + 1) * 5 - remainder)
+    # return the nearest year
+    return str(5 * round(year_int / 5))
 
 # Use this version for replication, the version above for new estimates.
 # def ghsl_year(year: str):
@@ -515,15 +553,20 @@ def indicator_raster(country :str, year :str, indicator: str):
     code,CODE=get_country_alpha3_code(country)
 
     # Construct the file path for the indicator raster using the country, year, and code
-    raster_path = result_root+country+'/'+year+'/tiff/'+code+'_'+year+'_idw'+indicator[3:]+'.tif'
+    raster_path = f"{result_root}/{country}/{year}/tiff/{code}_{year}_idw{indicator[3:]}.tif"
 
     # Return the generated file path
     return raster_path
 
-
+def nearest_ghs_year(years):
+    if not isinstance(years, list):
+        years = [years]
+    available_years = range(1980, 2030, 5)  # 1980, 1985, 1990, 1995, ..., 2020, 2025
+    target_year = max(int(year) for year in years)
+    return min(available_years, key=lambda x: abs(x - target_year))
 
 def population_raster(country :str, year :str):
-    '''
+    """
     # Obtain the country code
     code,CODE=get_country_alpha3_code(country)
 
@@ -532,24 +575,60 @@ def population_raster(country :str, year :str):
 
     # Return the generated file path
     return raster_path
-    '''
+    """
     # Obtain the country code
     code,CODE=get_country_alpha3_code(country)
+    ghs_year = nearest_ghs_year(int(year))
 
     # Construct the file path for the population raster using the country, year, and code
-    raster_path = data_root+country+'/'+year+'/'+code+'_GHS_POP_E2015_R2023_30arcsec.tif'
+    # raster_path = data_root+country+'/'+year+'/'+code+'_GHS_POP_E'+ghs_year+'_R2023_30arcsec.tif'
+    raster_path = f"{data_root}{country}/{year}/{code}_GHS_POP_E{ghs_year}_R2023_30arcsec.tif"
+
+    if not os.path.exists(raster_path):
+        print(f"Warning: Population raster for {country}, year {year} not found at {raster_path}")
+        print(f"Attempting to find raster in the country's base directory...")
+
+        # Try to find the raster in the country's base directory
+        alt_raster_path = os.path.join(data_root, country, f"{code}_GHS_POP_E{ghs_year}_R2023_30arcsec.tif")
+
+        if os.path.exists(alt_raster_path):
+            print(f"Found population raster at {alt_raster_path}")
+            return alt_raster_path
+        else:
+            print(f"Population raster not found for {country}, year {year} (using {ghs_year} data)")
+            return None
+
+    print(f"Using population raster for {country}, year {year} (GHS year {ghs_year})")
 
     # Return the generated file path
     return raster_path
 
 
-
-def ghs_population_raster(country :str, year :str):
+def ghs_population_raster(country: str, survey_year: str, settlement_year: str = None):
     # Obtain the country code
-    code,CODE=get_country_alpha3_code(country)
+    try:
+        code = pycountry.countries.search_fuzzy(country)[0].alpha_3
+    except (LookupError, IndexError):
+        code, CODE = get_country_alpha3_code(country)
+
+    if settlement_year is None:
+        settlement_year = survey_year
+
+    ghs_year = nearest_ghs_year(settlement_year)
+    code = code.lower()
+
 
     # Construct the file path for the population raster using the country, year, and code
-    raster_path = data_root+country+'/'+year+'/'+code+'_GHS_POP_E2015_R2023_30arcsec.tif'
+    raster_path = f"{data_root}{country}/{survey_year}/{code.lower()}_GHS_POP_E{ghs_year}_R2023_30arcsec.tif"
+
+    # If the file doesn't exist in the survey_year folder, try the settlement_year folder
+    # Next 4 lines may not be necessary
+    if not os.path.exists(raster_path):
+        raster_path = f"{data_root}{country}/{settlement_year}/{code.lower()}_GHS_POP_E{ghs_year}_R2023_30arcsec.tif"
+
+    if not os.path.exists(raster_path):
+        raise FileNotFoundError(f"GHS population raster for {country}, survey year {survey_year} "
+                                f"(using {ghs_year} data) not found at {raster_path}")
 
     # Return the generated file path
     return raster_path
@@ -559,10 +638,23 @@ def settlements_shapefile(country: str, year: str):
     code, CODE = get_country_alpha3_code(country)
 
     # Obtain the GHSL dataset year
-    syear = ghsl_year(year)
+    ghsl_yr = ghsl_year(year)
+
+    # Try the GHSL year path first
+    shapefile_path = os.path.join(data_root, country, f"{CODE}_settlements_{ghsl_yr}",
+                                  f"{CODE}_settlements_{ghsl_yr}.shp")
 
     # Construct the file path for the settlements shapefile
-    shapefile_path = data_root + country + '/' + CODE + '_settlements_' + syear + '/' + CODE + '_settlements_' + syear + '.shp'
+    if not os.path.exists(shapefile_path):
+        # If not found, try the original year
+        shapefile_path = os.path.join(data_root, country, f"{CODE}_settlements_{year}",
+                                      f"{CODE}_settlements_{year}.shp")
+
+    print(f"Constructed path: {shapefile_path}")
+
+    if not os.path.exists(shapefile_path):
+        print(f"Warning: File not found at {shapefile_path}")
+        return None
 
     # Return the generated file path
     return shapefile_path
@@ -572,7 +664,8 @@ def country_shapefile(country: str):
     code,CODE=get_country_alpha3_code(country)
 
     # Construct the file path for the country shapefile
-    shapefile_path = data_root+country+'/'+CODE+'_adm_shp/gadm41_'+CODE+'_0.shp'
+    # shapefile_path = data_root+country+'/'+CODE+'_adm_shp/gadm41_'+CODE+'_0.shp'
+    shapefile_path = f"{data_root}{country}/{CODE}_adm_shp/gadm41_{CODE}_0.shp"
 
     # Return the generated file path
     return shapefile_path
@@ -582,7 +675,8 @@ def subnational_shapefile(country: str, level=1):
     code,CODE=get_country_alpha3_code(country)
 
     # Construct the file path for the provinces shapefile
-    shapefile_path = data_root+country+'/'+CODE+'_adm_shp/gadm41_'+CODE+'_'+str(level)+'.shp'
+    # shapefile_path = data_root+country+'/'+CODE+'_adm_shp/gadm41_'+CODE+'_'+str(level)+'.shp'
+    shapefile_path = f"{data_root}{country}/{CODE}_adm_shp/gadm41_{CODE}_{level}.shp"
 
     # Return the generated file path
     return shapefile_path
@@ -603,7 +697,8 @@ def generate_country_dhs_csv_file(country: str, year: str):
     dhs = dhs[(dhs['country'] == country) & (dhs['year'] == int(year))]
 
     # Define the output path for the new merged CSV file
-    name = data_root + '/' + country + '/' + year + '/' + country + '_DHS_' + year + '.csv'
+    # name = data_root + '/' + country + '/' + year + '/' + country + '_DHS_' + year + '.csv'
+    name = f"{data_root}/{country}/{year}/{country}_DHS_{year}.csv"
 
     dhs.to_csv(name, index=False)
 
@@ -613,12 +708,13 @@ def dhs_csv_file(country: str, year: str):
     code, CODE = get_country_alpha3_code(country)
 
     # Construct the file path for the DHS csv file
-    csv_path = data_root+country+'/'+year+'/'+country+'_DHS_'+year+'.csv'
+    # csv_path = data_root+country+'/'+year+'/'+country+'_DHS_'+year+'.csv'
+    csv_path = f"{data_root}{country}/{year}/{country}_DHS_{year}.csv"
 
     # Return the generated file path
     return csv_path
 
-def removing_sporious_data(df):
+def removing_spurious_data(df):
     # Removind data with longitude and latitude near (0,0)
     df = df.drop(df[(abs(df['LNG'])< 1e-2) & (abs(df['LAT'])< 1e-2)].index)
 
@@ -834,62 +930,92 @@ def reproject_tif(input_tif_path, output_tif_path):
                     dst_crs=dst_crs,
                     resampling=Resampling.nearest)
 
-
+def find_nearest_smod_year(target_year):
+    available_years = [1995, 2000, 2005, 2010, 2015, 2020, 2025]
+    return min(available_years, key=lambda x: abs(x - int(target_year)))
 
 def polygonize_settlements(country: str, year: str):
-    # Obtain the country's alpha-3 code from the function get_country_alpha3_code(country)
-    code, CODE = get_country_alpha3_code(country)
+    try:
+        # Obtain the country's alpha-3 code from the function get_country_alpha3_code(country)
+        code, CODE = get_country_alpha3_code(country)
 
-    # Convert the input year to a specific year format based on the ghsl_year(year) function
-    syear = ghsl_year(year)
+        # Convert the input year to a specific year format based on the ghsl_year(year) function
+        # syear = ghsl_year(year)
+        # Find the nearest available GHSL-SMOD year
+        original_year = year
+        syear = str(find_nearest_smod_year(year))
 
-    # Define the path to the global settlement TIFF file
-    #path_to_globe_tiff = data_root + 'Globe/GHS_SMOD_E' + syear + '_GLOBE_R2023A_54009_1000_V1_0/GHS_SMOD_' + syear + '_WGS84.tif'
+        # Define the path to the global settlement TIFF file
+        #path_to_globe_tiff = data_root + 'Globe/GHS_SMOD_E' + syear + '_GLOBE_R2023A_54009_1000_V1_0/GHS_SMOD_' + syear + '_WGS84.tif'
 
-    path_to_globe_tiff = data_root + 'Globe/GHS_SMOD_GLOBE_R2023A_' + syear+'/GHS_SMOD_E' + syear + '_GLOBE_R2023A_WGS84.tif'
+        path_to_globe_tiff = data_root + 'Globe/GHS_SMOD_GLOBE_R2023A_' + syear+'/GHS_SMOD_E' + syear + '_GLOBE_R2023A_WGS84.tif'
+        while not os.path.exists(path_to_globe_tiff) and int(syear) >= 1995 and int(syear) <= 2025:
+            # If file doesn't exist, try the next nearest year
+            if int(syear) < int(original_year):
+                syear = str(find_nearest_smod_year(int(syear) + 5))
+            else:
+                syear = str(find_nearest_smod_year(int(syear) - 5))
+        path_to_globe_tiff = data_root + 'Globe/GHS_SMOD_GLOBE_R2023A_' + syear + '/GHS_SMOD_E' + syear + '_GLOBE_R2023A_WGS84.tif'
 
-    # Define a suffix for the settlement shapefile folder and output files
-    settl_year = '_settlements_' + syear
+        # Check if the file exists
+        if not os.path.exists(path_to_globe_tiff):
+            print(f"Skipping {country} for year {original_year}: No suitable GeoTIFF file found between 1995 and 2025")
+            return
 
-    # Obtain the path to the country shapefile using the country_shapefile(country) function
-    path_to_country_shp = country_shapefile(country)
+        print(f"Processing {country} for requested year {original_year} using data from {syear}")
 
-    # Define the folder path where the output settlement shapefile will be saved
-    shape_folder = data_root + country + '/' + CODE + settl_year + '/'
+        # Define a suffix for the settlement shapefile folder and output files
+        settl_year = '_settlements_' + syear
 
-    # Check if the shape folder exists, and if not, create it
-    if not os.path.exists(shape_folder):
-        os.makedirs(shape_folder)
+        # Obtain the path to the country shapefile using the country_shapefile(country) function
+        path_to_country_shp = country_shapefile(country)
 
-    # Open the country shapefile and extract the geometries to be used for polygonization
-    with fiona.open(path_to_country_shp, "r") as shapefile:
-        polygons = [[feature["geometry"]] for feature in shapefile]  # List of geometries for the country
+        # Define the folder path where the output settlement shapefile will be saved
+        shape_folder = data_root + country + '/' + CODE + settl_year + '/'
 
-        # Open the global settlement raster TIFF and crop it using the country boundaries
-        with rasterio.open(path_to_globe_tiff) as src:
-            out_image, out_transform = rasterio.mask.mask(
-                src, polygons[0], crop=True, filled=True, nodata=-9999.0)
-            out_meta = src.meta
-            out_meta.update({"driver": "GTiff",
-                             "height": out_image.shape[1],
-                             "width": out_image.shape[2],
-                             "transform": out_transform})
+        # Check if the shape folder exists, and if not, create it
+        if not os.path.exists(shape_folder):
+            os.makedirs(shape_folder)
 
-            # Reclassify the settlement pixel values to 1 (settlement) and 0 (non-settlement)
-            out_image[out_image == 30] = 1
-            out_image[out_image == 23] = 1
-            out_image[out_image == 22] = 1
-            out_image[out_image == 21] = 1
-            out_image[out_image == 13] = 1
-            out_image[out_image == 12] = 1
-            out_image[out_image != 1] = 0  # Non-settlement pixels are set to 0
+        # Open the country shapefile and extract the geometries to be used for polygonization
+        try:
+            with fiona.open(path_to_country_shp, "r") as shapefile:
+                polygons = [[feature["geometry"]] for feature in shapefile]  # List of geometries for the country
+        except fiona.errors.DriverError as e:
+            print(f"Error opening country shapefile for {country}: {str(e)}")
+            return
 
-            # Define the output path for the settlement raster TIFF
-            output = data_root + country + '/' + CODE + settl_year + '.tif'
+            # Open the global settlement raster TIFF and crop it using the country boundaries
+        try:
+            with rasterio.open(path_to_globe_tiff) as src:
+                out_image, out_transform = rasterio.mask.mask(
+                    src, polygons[0], crop=True, filled=True, nodata=-9999.0)
+                out_meta = src.meta
+                out_meta.update({"driver": "GTiff",
+                                 "height": out_image.shape[1],
+                                 "width": out_image.shape[2],
+                                 "transform": out_transform})
 
-            # Create the settlement raster TIFF and write the reclassified data to it
-            with rasterio.open(output, "w", **out_meta) as dest:
-                dest.write(out_image)
+                # Reclassify the settlement pixel values to 1 (settlement) and 0 (non-settlement)
+                out_image[out_image == 30] = 1
+                out_image[out_image == 23] = 1
+                out_image[out_image == 22] = 1
+                out_image[out_image == 21] = 1
+                out_image[out_image == 13] = 1
+                out_image[out_image == 12] = 1
+                out_image[out_image != 1] = 0  # Non-settlement pixels are set to 0
+
+                # Optionally # Reclassify the image
+#               for value in [30, 23, 22, 21, 13, 12]:
+#                   out_image[out_image == value] = 1
+#               out_image[out_image != 1] = 0
+
+                # Define the output path for the settlement raster TIFF
+                output = data_root + country + '/' + CODE + settl_year + '.tif'
+
+                # Create the settlement raster TIFF and write the reclassified data to it
+                with rasterio.open(output, "w", **out_meta) as dest:
+                    dest.write(out_image)
 
             # Open the created raster file and create a corresponding shapefile with polygonized settlements
             raster = gdal.Open(output)
@@ -910,6 +1036,29 @@ def polygonize_settlements(country: str, year: str):
             gdal.Polygonize(band, band, shp_layer, 0, [], callback=None)
             create_shp.Destroy()
             raster = None
+
+            print(f"Successfully processed {country} for year {year} (using {syear})")
+
+        except rasterio.errors.RasterioIOError as e:
+            print(f"Error processing raster for {country} (requested year {original_year}, using {syear}): {str(e)}")
+
+        except gdal.GDALError as e:
+            print(f"GDAL error processing {country} (requested year {original_year}, using {syear}): {str(e)}")
+
+        except Exception as e:
+            print(f"Unexpected error processing raster for {country} (requested year {original_year}, using {syear}): {str(e)}")
+
+    except FileNotFoundError as e:
+            print(f"File not found for {country} (requested year {original_year}): {str(e)}")
+
+    except Exception as e:
+            print(f"Unexpected error in polygonize_settlements for {country} (requested year {original_year}): {str(e)}")
+    finally:
+
+        # Close open GDAL datasets
+        if 'raster' in locals() and raster is not None:
+            raster = None
+        gdal.UseExceptions()  # Reset GDAL to raise exceptions
 
 
 def distance(loc1, loc2):
@@ -1394,7 +1543,7 @@ def local_inverse_distance_weighting_interpolation(x):
     df = df[['cluster', indicator, 'LNG', 'LAT']]
 
     # Remove spurious data from the DataFrame using a custom function removing_spurious_data(df)
-    df = removing_sporious_data(df)
+    df = removing_spurious_data(df)
 
     # Drop rows with missing values in the DataFrame
     df = df.dropna()
@@ -1417,7 +1566,7 @@ def local_inverse_distance_weighting_interpolation(x):
         net = dhs_clusters_network(regions, self_loop=True)
 
         # Get the path to the population raster for the country and year
-        path_to_population_raster = population_raster(country, year)
+        path_to_population_raster = population_raster(country,year)
 
         # Read the population raster using rasterio
         raster = rasterio.open(path_to_population_raster)
@@ -1455,12 +1604,12 @@ def local_inverse_distance_weighting_interpolation(x):
                             break
 
         # Define the subfolder to save the interpolated TIFF file
-        subfolder = result_root + country + '/' + year + '/tiff/'
+        subfolder = f"{result_root}{country}/{year}/tiff/"
         if not os.path.exists(subfolder):
             os.makedirs(subfolder)
 
         # Define the output path for the interpolated TIFF file
-        output_path = subfolder + code + '_' + year + '_idw_' + indicator[4:] + '.tif'
+        output_path = f"{subfolder}{code}_{year}_idw_{indicator[4:]}.tif"
 
         # Create a new raster using rasterio to save the interpolated values as a TIFF file
         with rasterio.open(
@@ -1566,7 +1715,7 @@ def validation_network_level(x):
 
     # Select relevant columns and remove NaN rows
     df = df[['cluster', indicator, 'LNG', 'LAT']]
-    df = removing_sporious_data(df)
+    df = removing_spurious_data(df)
     df = df.dropna()
 
     # Extract indicator values and cluster locations
@@ -1642,12 +1791,13 @@ def validation_network_level(x):
         indicator_std[q] = vs
 
     # Create a subfolder for saving results
-    subfolder = result_root + country + '/' + year + '/validation/'
+    subfolder = f"{result_root}{country}/{year}/validation/"
     if not os.path.exists(subfolder):
         os.makedirs(subfolder)
 
     # Define output file path
-    output = subfolder + CODE + '_VAL2_' + indicator + '_' + year + '.csv'
+    # output = subfolder + CODE + '_VAL2_' + indicator + '_' + year + '.csv'
+    output = f"{subfolder}{CODE}_VAL2_{indicator}_{year}.csv"
 
     # Create a result DataFrame and save to CSV
     result = pd.DataFrame()
@@ -1693,9 +1843,12 @@ def error_analysis_network_level(path: str =  list_of_country_years):
         code, CODE = get_country_alpha3_code(country)
 
         # Define paths to relevant files
-        csv_path = result_root + country + '/' + year + '/' + CODE + '_VAL2_' + year + '.csv'
-        dhs_path = data_root + country + '/' + year + '/' + country + '_DHS_' + year + '.csv'
-        dir_path = result_root + country + '/' + year + '/validation'
+        # csv_path = result_root + country + '/' + year + '/' + CODE + '_VAL2_' + year + '.csv'
+        # dhs_path = data_root + country + '/' + year + '/' + country + '_DHS_' + year + '.csv'
+        # dir_path = result_root + country + '/' + year + '/validation'
+        csv_path = f"{result_root}{country}/{year}/{CODE}_VAL2_{year}.csv"
+        dhs_path = f"{data_root}{country}/{year}/{country}_DHS_{year}.csv"
+        dir_path = f"{result_root}{country}/{year}/validation"
 
         # Read DHS data for the given country and year
         dhs = pd.read_csv(dhs_path)
@@ -1778,7 +1931,8 @@ def error_analysis_network_level(path: str =  list_of_country_years):
         res['P95'] = P95
 
         # Define the output path for the summary CSV file
-        output_path = result_root + country + '/' + year + '/' + CODE + '_VAL2_' + year
+        # output_path = result_root + country + '/' + year + '/' + CODE + '_VAL2_' + year
+        output_path = f"{result_root}{country}/{year}/{CODE}_VAL2_{year}"
         res.to_csv(output_path + '.csv')  # Save the DataFrame as a CSV file
 
         # Print the processed country and year
@@ -1805,7 +1959,8 @@ def merge_error_analysis_network_level(path: str =  list_of_country_years):
         code, CODE = get_country_alpha3_code(country)
 
         # Path to the error analysis CSV file
-        error_csv_path = result_root + country + '/' + year + '/' + CODE + '_VAL2_' + year + '.csv'
+        # error_csv_path = result_root + country + '/' + year + '/' + CODE + '_VAL2_' + year + '.csv'
+        error_csv_path = f"{result_root}{country}/{year}/{CODE}_VAL2_{year}.csv"
 
         # Read the error analysis CSV file into a DataFrame
         df = pd.read_csv(error_csv_path)
@@ -1821,9 +1976,23 @@ def merge_error_analysis_network_level(path: str =  list_of_country_years):
         RATIO = df['RATIO'].tolist()
 
         # Sort data based on indicator names
+        print(f"Length of lists before zip: INDICATOR={len(INDICATOR)}, TOT_CLUST={len(TOT_CLUST)}, ...")
         z = zip(INDICATOR, TOT_CLUST, NUM_CLUST, BIAS, MAE, RMSE, P95, RATIO)
+        print(f"Type of z after zip: {type(z)}")
+        z = list(z)  # Convert to list if it's a zip object
+        print(f"Length of z before sorting: {len(z)}")
+        if not z:
+            print(f"Warning: No data found for {country} {year}")
+            continue  # Skip to the next iteration
+
         z = sorted(z, key=lambda x: x[0])
-        INDICATOR, TOT_CLUST, NUM_CLUST, BIAS, MAE, RMSE, P95, RATIO = zip(*z)
+        print(f"Length of z after sorting: {len(z)}")
+
+        if z:
+            INDICATOR, TOT_CLUST, NUM_CLUST, BIAS, MAE, RMSE, P95, RATIO = zip(*z)
+        else:
+            print(f"Error: z is empty after sorting for {country} {year}")
+            continue  # Skip to the next iteration
 
         # Map indicator abbreviations to full names to descriptions
         INDICATOR = [indicator_dict['cov_'+indic] for indic in INDICATOR]
@@ -1876,13 +2045,16 @@ def merge_error_analysis_network_level(path: str =  list_of_country_years):
         res = res.fillna('NaN')
 
         # Add a worksheet to the workbook and set column widths
-        worksheet = workbook.add_worksheet(country + year)
-        writer.sheets[country + year] = worksheet
+        # worksheet = workbook.add_worksheet(country + year)
+        worksheet = workbook.add_worksheet(country + str(year))
+        # writer.sheets[country + year] = worksheet
+        writer.sheets[country + str(year)] = worksheet
         worksheet.set_column('A:A', 45)
         worksheet.set_column('B:G', 15)
 
         # Write the DataFrame to the Excel worksheet
-        res.to_excel(writer, sheet_name=country + year, index=False)
+        # res.to_excel(writer, sheet_name=country + year, index=False)
+        res.to_excel(writer, sheet_name=country + str(year), index=False)
 
         # Format the header row
         header_format = workbook.add_format({
@@ -1940,7 +2112,8 @@ def rmse_error_analysis_network_level(path: str =  list_of_country_years):
         code, CODE = get_country_alpha3_code(country)
 
         # Construct the path to the CSV file containing the RMSE data
-        csv_path = result_root + country + '/' + year + '/' + CODE + '_VAL2_' + year + '.csv'
+        # csv_path = result_root + country + '/' + year + '/' + CODE + '_VAL2_' + year + '.csv'
+        csv_path = f"{result_root}{country}/{year}/{CODE}_VAL2_{year}.csv"
 
         # Read the CSV file into a DataFrame
         df = pd.read_csv(csv_path)
@@ -1962,7 +2135,8 @@ def rmse_error_analysis_network_level(path: str =  list_of_country_years):
             res['INDICATOR'] = INDICATOR
 
         # Add the RMSE values for the current country and year pair to the result DataFrame
-        res[country + ' ' + year] = np.round(RMSE,2)
+        # res[country + ' ' + year] = np.round(RMSE,2)
+        res[country + ' ' + str(year)] = np.round(RMSE, 2)
 
     # Replace missing and zero RMSE values with 'nan'
     res = res.fillna('NaN')
@@ -2004,97 +2178,115 @@ def rmse_error_analysis_network_level(path: str =  list_of_country_years):
 def validation_settlement_level(x):
     # Unpack country and year from the input tuple
     country, year = x
-    print(x, '    starts')
+    print(f"{country} {year} starts")
 
     # Read the list of indicators
-    indicators = read_list_of_indicators()
+    try:
+        indicators = read_list_of_indicators()
 
-    # Generate indicator density and numerator lists
-    indic_den = ['den' + x[3:] for x in indicators]
-    indic_num = ['num' + x[3:] for x in indicators]
+        # Generate indicator density and numerator lists
+        indic_den = ['den' + x[3:] for x in indicators]
+        indic_num = ['num' + x[3:] for x in indicators]
 
-    # Get paths to relevant data files
-    path_to_settlements = settlements_shapefile(country, year)
-    path_to_dhs_survey = dhs_csv_file(country, year)
-    path_to_country_shapefile = country_shapefile(country)
+        # Get paths to relevant data files
+        settlement_year = nearest_settlement_year(year)
+        path_to_settlements = settlements_shapefile(country, str(settlement_year))
 
-    # Read DHS survey data into a DataFrame
-    df = pd.read_csv(path_to_dhs_survey)
+        if not os.path.exists(path_to_settlements):
+            return f"No settlement file found for {country} {settlement_year}"
 
-    # Perform data cleaning on the DataFrame
-    df = removing_sporious_data(df)
+        path_to_dhs_survey = dhs_csv_file(country, year)
+        path_to_country_shapefile = country_shapefile(country)
 
-    # Extract cluster locations, areas type, and cluster numbers from the DataFrame
-    locations = dhs_cluster_locations(df)
-    areas_type = dhs_cluster_areas_type(df)
-    cluster_numbers = dhs_cluster_numbers(df)
+        # Check if files exist
+        for path in [path_to_settlements, path_to_dhs_survey, path_to_country_shapefile]:
+            if not os.path.exists(path):
+                return f"File not found: {path}"
 
-    # Read country shapefile using GeoPandas
-    country_shape = gpd.read_file(path_to_country_shapefile)
+        # Read DHS survey data into a DataFrame
+        df = pd.read_csv(path_to_dhs_survey)
 
-    # Find DHS cluster locations inside settlements and get cluster IDs
-    dhs_locations_in_settlement, _, _ = dhs_clusters_inside_settlements(path_to_settlements, locations, areas_type)
+        # Perform data cleaning on the DataFrame
+        df = removing_spurious_data(df)
 
-    # Get DHS settlement clusters and IDs
-    dhs_settlement_clusters, dhs_settlement_id = dhs_settlements(dhs_locations_in_settlement)
+        # Extract cluster locations, areas type, and cluster numbers from the DataFrame
+        locations = dhs_cluster_locations(df)
+        areas_type = dhs_cluster_areas_type(df)
+        cluster_numbers = dhs_cluster_numbers(df)
 
-    # Initialize lists for Lidw prediction and DHS estimation
-    lidw_prediction, dhs_estimation = [], []
+        # Read country shapefile using GeoPandas
+        country_shape = gpd.read_file(path_to_country_shapefile)
 
-    # Open the settlements shapefile using Fiona
-    with fiona.open(path_to_settlements, "r") as shapefile:
-        shapes = [feature["geometry"]['coordinates'][0] for feature in shapefile]
+        # Find DHS cluster locations inside settlements and get cluster IDs
+        dhs_locations_in_settlement, _, _ = dhs_clusters_inside_settlements(path_to_settlements, locations, areas_type)
 
-        # Loop through settlement IDs and associated data
-        for i, id in enumerate(dhs_settlement_id):
-            polygon = Polygon(shapes[id])
-            clusters_within_settlement = dhs_settlement_clusters[i]
+        # Get DHS settlement clusters and IDs
+        dhs_settlement_clusters, dhs_settlement_id = dhs_settlements(dhs_locations_in_settlement)
 
-            tmp_pred = [np.nan for _ in indicators]
-            tmp_esti = [np.nan for _ in indicators]
+        # Initialize lists for Lidw prediction and DHS estimation
+        lidw_prediction, dhs_estimation = [], []
 
-            # Loop through indicators
+        # Open the settlements shapefile using Fiona
+        with fiona.open(path_to_settlements, "r") as shapefile:
+            shapes = [feature["geometry"]['coordinates'][0] for feature in shapefile]
+
+            # Loop through settlement IDs and associated data
+            for i, id in enumerate(dhs_settlement_id):
+                polygon = Polygon(shapes[id])
+                clusters_within_settlement = dhs_settlement_clusters[i]
+
+                tmp_pred = [np.nan for _ in indicators]
+                tmp_esti = [np.nan for _ in indicators]
+
+                # Loop through indicators
+                for j, indicator in enumerate(indicators):
+                    path_to_indicator_raster = indicator_raster(country, year, indicator)
+
+                    # Check if indicator raster file exists
+                    if os.path.exists(path_to_indicator_raster):
+                        tmp_pred[j] = average_raster_within_shape(path_to_indicator_raster, polygon)
+
+                    indic_den = 'den' + indicator[3:]
+                    indic_num = 'num' + indicator[3:]
+
+                    den = df[indic_den].to_numpy()
+                    num = df[indic_num].to_numpy()
+
+                    n_dhs = np.nansum([num[c] for c in clusters_within_settlement])
+                    d_dhs = np.nansum([den[c] for c in clusters_within_settlement])
+
+                    if d_dhs > 0:
+                        tmp_esti[j] = n_dhs / d_dhs
+
+                lidw_prediction.append(tmp_pred)
+                dhs_estimation.append(tmp_esti)
+
+            # Create a DataFrame to store the results
+            data = pd.DataFrame()
+            data['SETTLEMENT_ID'] = dhs_settlement_id
+
+            # Loop through indicators and add columns to the DataFrame
             for j, indicator in enumerate(indicators):
-                path_to_indicator_raster = indicator_raster(country, year, indicator)
+                tmp1 = [d[j] for d in lidw_prediction]
+                tmp2 = [d[j] for d in dhs_estimation]
 
-                # Check if indicator raster file exists
-                if os.path.exists(path_to_indicator_raster):
-                    tmp_pred[j] = average_raster_within_shape(path_to_indicator_raster, polygon)
+                data[indicator[4:].upper()] = tmp1
+                data[('DHS_' + indicator[4:]).upper()] = tmp2
 
-                indic_den = 'den' + indicator[3:]
-                indic_num = 'num' + indicator[3:]
+            # Define the output path for the result CSV file
+            # out_path = result_root + country + '/' + year + '/' + country + '_' + year + '_settlement.csv'
+            out_path = f"{result_root}{country}/{year}/{country}_{year}_settlement.csv"
 
-                den = df[indic_den].to_numpy()
-                num = df[indic_num].to_numpy()
+            # Save the data DataFrame to a CSV file
+            data.to_csv(out_path, index=False)
 
-                n_dhs = np.nansum([num[c] for c in clusters_within_settlement])
-                d_dhs = np.nansum([den[c] for c in clusters_within_settlement])
+            print(f"{country} {year} ends")
+            return f"Success: {country} {year}"
 
-                if d_dhs > 0:
-                    tmp_esti[j] = n_dhs / d_dhs
-
-            lidw_prediction.append(tmp_pred)
-            dhs_estimation.append(tmp_esti)
-
-        # Create a DataFrame to store the results
-        data = pd.DataFrame()
-        data['SETTLEMENT_ID'] = dhs_settlement_id
-
-        # Loop through indicators and add columns to the DataFrame
-        for j, indicator in enumerate(indicators):
-            tmp1 = [d[j] for d in lidw_prediction]
-            tmp2 = [d[j] for d in dhs_estimation]
-
-            data[indicator[4:].upper()] = tmp1
-            data[('DHS_' + indicator[4:]).upper()] = tmp2
-
-        # Define the output path for the result CSV file
-        out_path = result_root + country + '/' + year + '/' + country + '_' + year + '_settlement.csv'
-
-        # Save the data DataFrame to a CSV file
-        data.to_csv(out_path)
-
-        print(x, '    ends')
+    except Exception as e:
+        error_message = f"Error processing {country} {year}: {str(e)}"
+        print(error_message)
+        return error_message
 
 
 def merge_error_analysis_settlement_level():
@@ -2126,7 +2318,8 @@ def merge_error_analysis_settlement_level():
         code, CODE = get_country_alpha3_code(country)
 
         # Construct the path to the settlement result CSV file
-        path_to_settlement_result = result_root + country + '/' + year + '/' + country + '_' + year + '_settlement.csv'
+        # path_to_settlement_result = result_root + country + '/' + year + '/' + country + '_' + year + '_settlement.csv'
+        path_to_settlement_result = f"{result_root}{country}/{year}/{country}_{year}_settlement.csv"
 
         # Read the settlement result CSV file into a DataFrame
         df = pd.read_csv(path_to_settlement_result)
@@ -2165,15 +2358,18 @@ def merge_error_analysis_settlement_level():
         result = result.fillna('NaN')
 
         # Add a new worksheet for the current country and year
-        worksheet = workbook.add_worksheet(country + year)
-        writer.sheets[country + year] = worksheet
+        # worksheet = workbook.add_worksheet(country + year)
+        worksheet = workbook.add_worksheet(f"{country}{year}")
+        # writer.sheets[country + year] = worksheet
+        writer.sheets[f"{country}{year}"] = worksheet
 
         # Set column widths
         worksheet.set_column('A:A', 45)
         worksheet.set_column('B:F', 15)
 
         # Write the result DataFrame to the Excel worksheet
-        result.to_excel(writer, sheet_name=country + year, index=False)
+        # result.to_excel(writer, sheet_name=country + year, index=False)
+        result.to_excel(writer, sheet_name=f"{country}{year}", index=False)
 
         # Define header format
         header_format = workbook.add_format({
@@ -2243,7 +2439,8 @@ def rmsd_error_analysis_settlement_level():
         code, CODE = get_country_alpha3_code(country)
 
         # Define the path to the settlement result file
-        path_to_settlement_result = result_root + country + '/' + year + '/' + country + '_' + year + '_settlement.csv'
+        # path_to_settlement_result = result_root + country + '/' + year + '/' + country + '_' + year + '_settlement.csv'
+        path_to_settlement_result = f"{result_root}{country}/{year}/{country}_{year}_settlement.csv"
 
         # Read the settlement result DataFrame
         df = pd.read_csv(path_to_settlement_result)
@@ -2271,7 +2468,8 @@ def rmsd_error_analysis_settlement_level():
             tmp[i] = np.round(rmsd, 2)
 
         # Add the temporary list of RMSD values to the result DataFrame
-        result[country+' '+year] = tmp
+        # result[country+' '+year] = tmp
+        result[f"{country} {year}"] = tmp
 
     # Fill NaN values with 'NaN' and replace 0 with 'NaN'
     result = result.fillna('NaN')
@@ -2300,7 +2498,7 @@ def validation_subnational_division_level(x, level=1):
 
     # Read DHS survey data and preprocess it
     df = pd.read_csv(path_to_dhs_survey)
-    df = removing_sporious_data(df)
+    df = removing_spurious_data(df)
     locations = dhs_cluster_locations(df)
     areas_type = dhs_cluster_areas_type(df)
     cluster_numbers = dhs_cluster_numbers(df)
@@ -2367,7 +2565,8 @@ def validation_subnational_division_level(x, level=1):
             data[('DHS_' + indicator[4:]).upper()] = tmp2
 
         # Define the output path for the results CSV file
-        out_path = result_root + country + '/' + year + '/' + country + '_' + year + '_subnational_level_'+str(level)+'.csv'
+        # out_path = result_root + country + '/' + year + '/' + country + '_' + year + '_subnational_level_'+str(level)+'.csv'
+        out_path = f"{result_root}{country}/{year}/{country}_{year}_subnational_level_{level}.csv"
 
         # Save the results to the CSV file
         data.to_csv(out_path)
@@ -2404,7 +2603,8 @@ def merge_error_analysis_subnational_division_level(level=1):
         code, CODE = get_country_alpha3_code(country)
 
         # Define the path to the subnational division result file
-        path_to_division_result = result_root + country + '/' + year + '/' + country + '_' + year + '_subnational_level_'+str(level)+'.csv'
+        # path_to_division_result = result_root + country + '/' + year + '/' + country + '_' + year + '_subnational_level_'+str(level)+'.csv'
+        path_to_division_result = f"{result_root}{country}/{year}/{country}_{year}_subnational_level_{level}.csv"
 
         # Read the subnational division result DataFrame
         df = pd.read_csv(path_to_division_result)
@@ -2445,13 +2645,15 @@ def merge_error_analysis_subnational_division_level(level=1):
         result = result.fillna('NaN')
 
         # Add a worksheet to the Excel workbook
-        worksheet = workbook.add_worksheet(country + year)
-        writer.sheets[country + year] = worksheet
+        worksheet = workbook.add_worksheet(f"{country}{year}")
+        # writer.sheets[country + year] = worksheet
+        writer.sheets[f"{country}{year}"] = worksheet
 
         # Set column widths and save the DataFrame to the worksheet
         worksheet.set_column('A:A', 45)
         worksheet.set_column('B:F', 15)
-        result.to_excel(writer, sheet_name=country + year, index=False)
+        #result.to_excel(writer, sheet_name=country + year, index=False)
+        result.to_excel(writer, sheet_name=f"{country}{year}", index=False)
 
         # Define a header format
         header_format = workbook.add_format({
@@ -2521,7 +2723,8 @@ def rmsd_error_analysis_subnational_division_level(level=1):
         code, CODE = get_country_alpha3_code(country)
 
         # Define the path to the subnational division result file
-        path_to_division_result = result_root + country + '/' + year + '/' + country + '_' + year + '_subnational_level_'+str(level)+'.csv'
+        # path_to_division_result = result_root + country + '/' + year + '/' + country + '_' + year + '_subnational_level_'+str(level)+'.csv'
+        path_to_division_result = f"{result_root}{country}/{year}/{country}_{year}_subnational_level_{level}.csv"
 
         # Read the subnational division result DataFrame
         df = pd.read_csv(path_to_division_result)
@@ -2549,7 +2752,8 @@ def rmsd_error_analysis_subnational_division_level(level=1):
             tmp[i] = np.round(rmsd, 2)
 
         # Add the temporary list of RMSD values to the result DataFrame
-        result[country+' '+year] = tmp
+        # result[country+' '+year] = tmp
+        result[f"{country} {year}"] = tmp
 
     # Fill NaN values with 'NaN' and replace 0 with 'NaN'
     result = result.fillna('NaN')
@@ -2577,7 +2781,7 @@ def aggregate_error_analysis():
         code, CODE = get_country_alpha3_code(country)
 
         # Read CSV and Excel files
-        csv_path = os.path.join(result_root, country, year, f'{CODE}_VAL2_{year}.csv')
+        csv_path = os.path.join(result_root, country, str(year), f'{CODE}_VAL2_{year}.csv')
         df = pd.read_csv(csv_path)
         df.columns = [f'LOOCV_{col}' for col in df.columns]
 
@@ -2595,19 +2799,31 @@ def aggregate_error_analysis():
 
         # Merge data into new rows
         for ind, IND in zip(indicators, INDICATORS):
-            filtered_row = df[df['LOOCV_INDICATOR'] == ind[4:]].iloc[0].to_dict()
-            settl_row = df_set[df_set['SETTL_INDICATOR'] == IND].iloc[0].to_dict()
-            adm1_row = df_adm1[df_adm1['ADM1_INDICATOR'] == IND].iloc[0].to_dict()
-            adm2_row = df_adm2[df_adm2['ADM2_INDICATOR'] == IND].iloc[0].to_dict()
+            try:
+                filtered_df = df[df['LOOCV_INDICATOR'] == ind[4:]]
+                settl_df = df_set[df_set['SETTL_INDICATOR'] == IND]
+                adm1_df = df_adm1[df_adm1['ADM1_INDICATOR'] == IND]
+                adm2_df = df_adm2[df_adm2['ADM2_INDICATOR'] == IND]
 
-            new_row = {'COUNTRY': country, 'YEAR': int(year), 'INDICATOR': IND}
-            new_row.update(filtered_row)
-            new_row.update(settl_row)
-            new_row.update(adm1_row)
-            new_row.update(adm2_row)
+                if filtered_df.empty or settl_df.empty or adm1_df.empty or adm2_df.empty:
+                    print(f"Missing data for indicator {IND} in {country} {year}")
+                    continue
 
-            # res = res.append(new_row, ignore_index=True)
-            res = pd.concat([res, pd.DataFrame([new_row])], ignore_index=True)
+                filtered_row = filtered_df.iloc[0].to_dict()
+                settl_row = settl_df.iloc[0].to_dict()
+                adm1_row = adm1_df.iloc[0].to_dict()
+                adm2_row = adm2_df.iloc[0].to_dict()
+
+                new_row = {'COUNTRY': country, 'YEAR': int(year), 'INDICATOR': IND}
+                new_row.update(filtered_row)
+                new_row.update(settl_row)
+                new_row.update(adm1_row)
+                new_row.update(adm2_row)
+
+                res = pd.concat([res, pd.DataFrame([new_row])], ignore_index=True)
+
+            except Exception as e:
+                print(f"Error processing {IND} for {country} {year}: {str(e)}")
 
     # Remove unnecessary columns
     columns_to_remove = ['LOOCV_Unnamed: 0', 'LOOCV_INDICATOR', 'SETTL_INDICATOR', 'ADM1_INDICATOR', 'ADM2_INDICATOR']
@@ -2884,7 +3100,8 @@ def plot_indicator_tiff(x,min_max_scale = False):
     code, CODE = get_country_alpha3_code(country)
 
     # Get the path to the interpolated TIFF file for the given indicator
-    path = result_root + country + '/' + year + '/tiff/' + code + '_' + year + '_idw_' + indicator[4:] + '.tif'
+    # path = result_root + country + '/' + year + '/tiff/' + code + '_' + year + '_idw_' + indicator[4:] + '.tif'
+    path = f"{result_root}{country}/{year}/tiff/{code}_{year}_idw_{indicator[4:]}.tif"
 
     dic_indic = dictionary_of_indicators()
     indic = dic_indic[indicator]
@@ -2932,14 +3149,16 @@ def plot_indicator_tiff(x,min_max_scale = False):
         cbr.set_label('PERCENTAGE', rotation=270, labelpad=15)
 
         # Define the subfolder to save the plotted PNG file
-        subfolder = result_root + country + '/' + year + '/tiff/png/'
+        # subfolder = result_root + country + '/' + year + '/tiff/png/'
+        subfolder = f"{result_root}{country}/{year}/tiff/png/"
         if not os.path.exists(subfolder):
             os.makedirs(subfolder)
 
         indic = dic_indic[indicator].replace(' ', '_')
 
         # Define the output path for the plotted PNG file
-        out_path = subfolder + code + '_' + year + '_idw_' + indic + ' .png'
+        # out_path = subfolder + code + '_' + year + '_idw_' + indic + ' .png'
+        out_path = f"{subfolder}{code}_{year}_idw_{indic}.png"
 
         # Save the plot as a PNG image file with specified resolution and layout parameters
         plt.savefig(out_path, dpi=300, bbox_inches='tight', pad_inches=0.05)
@@ -3009,7 +3228,8 @@ def plot_indicator_raster_with_border(x):
         indic = dic_indic[indicator].replace(' ', '_')
 
         # Define the output path for the plotted PNG file
-        out_path = subfolder + code + '_' + year + '_idw_' + indic + '.png'
+        # out_path = subfolder + code + '_' + year + '_idw_' + indic + '.png'
+        out_path = f"{subfolder}{code}_{year}_idw_{indic}.png"
 
         # Save the plot as a PNG image file with specified resolution and layout parameters
         plt.savefig(out_path, dpi=300, bbox_inches='tight', pad_inches=0.05)
@@ -3134,7 +3354,7 @@ def loocv_settlements(x):
 
     df = df[['cluster', indicator, 'LNG', 'LAT', 'URBAN_RURA']]
 
-    df = removing_sporious_data(df)
+    df = removing_spurious_data(df)
 
     df = df.dropna()
 
@@ -3158,7 +3378,7 @@ def loocv_settlements(x):
 
             shapes = [shape(feature["geometry"]) for feature in shapefile]
 
-            lidw_estimation_dict = lidw_estimation_for_settlements(country, year, indicator, shapes, dhs_settlement_id)
+            lidw_estimation_dict = f"lidw_estimation_for_settlements({country}, {year}, {indicator}, {shapes}, {dhs_settlement_id})"
 
             with rasterio.open(path_to_indicator_raster) as src:
                 data = src.read(1)
@@ -3224,7 +3444,8 @@ def loocv_settlements(x):
                 if not os.path.exists(subfolder):
                     os.makedirs(subfolder)
 
-                out_path =  subfolder + code + '_' + year + '_idw_loocv_settl_' + indicator[4:] +'.csv'
+                # out_path =  subfolder + code + '_' + year + '_idw_loocv_settl_' + indicator[4:] +'.csv'
+                out_path = f"{subfolder}{code}_{year}_idw_loocv_settl_{indicator[4:]}.csv"
 
                 res.to_csv(out_path)
                 print(x,'end')
@@ -3239,7 +3460,8 @@ def rmse_loocv_settlements(x):
 
     code, CODE = get_country_alpha3_code(country)
 
-    path_to_csv = result_root + country + '/' + year + '/loocv_settl_valid/' + code + '_' + year + '_idw_loocv_settl_' + indicator[4:] +'.csv'
+    # path_to_csv = result_root + country + '/' + year + '/loocv_settl_valid/' + code + '_' + year + '_idw_loocv_settl_' + indicator[4:] +'.csv'
+    path_to_csv = f"{result_root}{country}/{year}/loocv_settl_valid/{code}_{year}_idw_loocv_settl_{indicator[4:]}.csv"
 
     if os.path.exists(path_to_csv) :
 
@@ -3326,13 +3548,14 @@ def loocv_settlements_details():
 
             num_dhs = len(dhs)
 
-            dhs = removing_sporious_data(dhs)
+            dhs = removing_spurious_data(dhs)
 
             dhs = dhs.dropna()
 
             num_valid_dhs = len(dhs)
 
-            path_to_csv = result_root + country + '/' + year + '/loocv_settl_valid/' + code + '_' + year + '_idw_loocv_settl_' + indicator[4:] +'.csv'
+            # path_to_csv = result_root + country + '/' + year + '/loocv_settl_valid/' + code + '_' + year + '_idw_loocv_settl_' + indicator[4:] +'.csv'
+            path_to_csv = f"{result_root}{country}/{year}/loocv_settl_valid/{code}_{year}_idw_loocv_settl_{indicator[4:]}.csv"
 
             if os.path.exists(path_to_csv) :
 
@@ -3376,86 +3599,86 @@ def int_to_str_with_length(number, length):
     # Convert the integer to a string and pad with leading zeros
     return str(number).zfill(length)
 
-
+# helper function for settlement year search
+def nearest_settlement_year(year):
+    return 5 * round(int(year) / 5)
 
 def settlements_indicators_to_csv(x):
+    try:
+        country, year = x
+        settlement_year = nearest_settlement_year(year)
+        code, CODE = get_country_alpha3_code(country)
 
-    country, year = x
+        path_to_settlements_shapefile = settlements_shapefile(country, str(settlement_year))
+        if path_to_settlements_shapefile is None:
+            raise FileNotFoundError(f"Settlement shapefile not found for {country}, year {year}")
 
-    code, CODE = get_country_alpha3_code(country)
+        path_to_population_raster = ghs_population_raster(country, year, str(settlement_year))
+        if path_to_population_raster is None:
+            raise FileNotFoundError(f"Population raster not found for {country}, year {year}")
 
-    path_to_settlements_shapefile = settlements_shapefile(country, year)
 
-    path_to_population_raster = ghs_population_raster(country, year)
+        indicators = read_list_of_indicators()
+        total_population = 0
+        with rasterio.open(path_to_population_raster) as src:
 
-    path_to_settlements_shapefile = settlements_shapefile(country, year)  #subnational_shapefile(country,level=2) #settlements_shapefile(country, year)
+             data = src.read(1)
+             data[data < 0] = 0
+             total_population = np.sum(data)
 
-    indicators = read_list_of_indicators()
+        sett_code, sett_pop, sett_frac = [], [], []
+        sett_indicator = [[] for _ in indicators]
 
-    total_population = 0
+        try:
+            with fiona.open(path_to_settlements_shapefile, "r") as shapefile:
 
-    with rasterio.open(path_to_population_raster) as src:
+                shapes = [shape(feature["geometry"]) for feature in shapefile]
+                for s, shapei in enumerate(shapes):
+                    shape_code = f"{CODE}{str(s).zfill(6)}"
+                    sett_code.append(shape_code)
+                    temp = aggregate_raster_within_shape(path_to_population_raster, shapei)
+                    sett_pop.append(temp)
+                    sett_frac.append(temp / total_population)
+                    for i, indicator in enumerate(indicators):
+                        path_to_indicator_raster = indicator_raster(country, year, indicator)
+                        if os.path.exists(path_to_indicator_raster):
+                            temp = average_raster_within_shape(path_to_indicator_raster, shapei)
 
-         data = src.read(1)
+                        else :
+                            temp = -1
+                        sett_indicator[i].append(temp)
 
-         data[data < 0] = 0
+                    if s%100 == 0 :
+                        print(f"{x}, {s}, {len(shapes)}")
 
-         total_population = np.sum(data)
-
-    sett_code, sett_pop, sett_frac = [], [], []
-
-    sett_indicator = [[] for _ in indicators]
-
-    with fiona.open(path_to_settlements_shapefile, "r") as shapefile:
-
-        shapes = [shape(feature["geometry"]) for feature in shapefile]
-
-        for s,shapei in enumerate(shapes):
-
-            shape_code = CODE+str(s).zfill(6)
-
-            sett_code.append(shape_code)
-
-            temp = aggregate_raster_within_shape(path_to_population_raster,shapei)
-
-            sett_pop.append(temp)
-
-            sett_frac.append (temp / total_population)
+            res = pd.DataFrame()
+            res['SETT_CODE'] = sett_code
+            res['SETT_POP'] = sett_pop
+            res['SETT_FRAC'] = sett_frac
 
             for i, indicator in enumerate(indicators):
+                INDIC = indicators[i][4:].upper()
+                res[INDIC] = sett_indicator[i]
 
-                path_to_indicator_raster = indicator_raster(country, year, indicator)
+            subfolder = f"{result_root}/{country}/{year}/"
 
-                if os.path.exists(path_to_indicator_raster):
+            if not os.path.exists(subfolder):
 
-                    temp = average_raster_within_shape(path_to_indicator_raster , shapei)
+                os.makedirs(subfolder)
 
-                else :
+            output_file = f"{subfolder}{code}_sett_indic.csv"
+            res.to_csv(output_file)
+            print(f"Successfully processed {country} for year {year}")
+            return True
 
-                    temp = -1
+        except FileNotFoundError:
+            print(f"Skipping {country} for year {year}: Required files not found")
+            return False
 
-                sett_indicator[i].append(temp)
+    except Exception as e:
+        print(f"Error processing {country} for year {year}: {str(e)}")
 
-            if s%100 == 0 :
-                print(x,s,len(shapes))
-
-    res = pd.DataFrame()
-
-    res['SETT_CODE'] = sett_code
-    res['SETT_POP'] = sett_pop
-    res['SETT_FRAC'] = sett_frac
-
-    for i, indicator in enumerate(indicators):
-        INDIC = indicators[i][4:].upper()
-        res[INDIC] = sett_indicator[i]
-
-    subfolder = result_root + country + '/' + year +'/'
-
-    if not os.path.exists(subfolder):
-
-        os.makedirs(subfolder)
-
-    res.to_csv(subfolder+code+'_sett_indic.csv')
+    return False
 
 
 def add_properties_with_values_to_new_shapefile(shapefile_path, modified_shapefile_path, properties_with_values):
@@ -3490,12 +3713,22 @@ def add_properties_with_values_to_new_shapefile(shapefile_path, modified_shapefi
 def settlements_indicators_to_shapefile(x) :
 
     country, year = x
-
+    settlement_year = nearest_settlement_year(year)
     code, CODE = get_country_alpha3_code(country)
 
-    path_to_settlements_shapefile = settlements_shapefile(country, year)
+    print(f"Processing: {country}, requested year: {year}, using settlement year: {settlement_year}")
 
-    path_to_sett_indic = result_root + country + '/' + year +'/'+ code+'_sett_indic.csv'
+    path_to_settlements_shapefile = settlements_shapefile(country, str(settlement_year))
+    # path_to_sett_indic = result_root + country + '/' + year +'/'+ code+'_sett_indic.csv'
+    path_to_sett_indic = f"{result_root}{country}/{year}/{code}_sett_indic.csv"
+    # path_to_sett_indic = os.path.join(result_root, country, year, f"{code}_sett_indic.csv")
+
+    print(f"Looking for CSV file: {path_to_sett_indic}")
+
+    # Check if the CSV file exists
+    if not os.path.exists(path_to_sett_indic):
+        print(f"Warning: CSV file not found for {country}, {year}. Skipping processing.")
+        return
 
     indicators = read_list_of_indicators()
 
@@ -3505,57 +3738,74 @@ def settlements_indicators_to_shapefile(x) :
               'IYCB_C_EXB','VACC_C_BCG','VACC_C_DP3','VACC_C_MSL','NETC_C_ITN','DIAT_C_ORS','NUTS_C_HA2',
               'NUTS_C_WH2','ANMC_C_ANY']
 
+    try:
+        df = pd.read_csv(path_to_sett_indic)
 
-    df = pd.read_csv(path_to_sett_indic)
+        # properties = {l: df[h].tolist() for l, h in zip(labels, headers)}
+        properties = {}
+        for l,h in zip(labels,headers) :
+            properties[l] = df[h].tolist()
 
-    properties = {}
+        # subfolder = result_root + country + '/' + year +'/'+code+'_sett_indic_shapefile/'
+        subfolder = f"{result_root}{country}/{year}/{code}_sett_indic_shapefile/"
 
-    for l,h in zip(labels,headers) :
+        if not os.path.exists(subfolder):
+            os.makedirs(subfolder)
 
-        properties[l] = df[h].tolist()
+        path_to_modified_settlements_shapefile = subfolder+code+'_sett_indic.shp'
 
+        add_properties_with_values_to_new_shapefile(
+            path_to_settlements_shapefile,
+            path_to_modified_settlements_shapefile,
+            properties
+        )
+        print(f"Successfully processed {country}, {year}")
 
-    subfolder = result_root + country + '/' + year +'/'+code+'_sett_indic_shapefile/'
-
-    if not os.path.exists(subfolder):
-
-        os.makedirs(subfolder)
-
-
-    path_to_modified_settlements_shapefile = subfolder+code+'_sett_indic.shp'
-
-    add_properties_with_values_to_new_shapefile(path_to_settlements_shapefile, path_to_modified_settlements_shapefile, properties)
-
+    except Exception as e:
+        print(f"Error processing {country}, {year}: {str(e)}")
 
 def ghs_population_count(x) :
 
     country, year = x
-
     code, CODE = get_country_alpha3_code(country)
 
-    path_to_sett_indic = result_root + country + '/' + year +'/'+ code+'_sett_indic.csv'
-
-
+    #path_to_sett_indic = result_root + country + '/' + year +'/'+ code+'_sett_indic.csv'
+    path_to_sett_indic = f"{result_root}{country}/{year}/{code}_sett_indic.csv"
     path_to_population_raster = ghs_population_raster(country, year)
 
-    pop_tot = 0
+    print(f"Processing: {country}, {year}")
+    print(f"Looking for CSV file: {path_to_sett_indic}")
+    print(f"Looking for population raster: {path_to_population_raster}")
 
-    with rasterio.open(path_to_population_raster) as src:
+    if not os.path.exists(path_to_sett_indic):
+        print(f"Warning: CSV file not found for {country}, {year}. Skipping processing.")
+        return None, None, None
 
-         data = src.read(1)
+    if not os.path.exists(path_to_sett_indic):
+        print(f"Warning: CSV file not found for {country}, {year}. Skipping processing.")
+        return None, None, None
 
-         data[data < 0] = 0
+    try:
 
-         pop_tot = np.sum(data)
+        pop_tot = 0
+
+        with rasterio.open(path_to_population_raster) as src:
+
+             data = src.read(1)
+             data[data < 0] = 0
+             pop_tot = np.sum(data)
 
 
-    df = pd.read_csv(path_to_sett_indic)
+        df = pd.read_csv(path_to_sett_indic)
+        sett_tot = np.nansum(df['SETT_POP'].tolist())
+        frac_tot = np.nansum(df['SETT_FRAC'].tolist())
 
-    sett_tot = np.nansum(df['SETT_POP'].tolist())
+        print(f"Successfully processed {country}, {year}")
+        return pop_tot, sett_tot, frac_tot
 
-    frac_tot = np.nansum(df['SETT_FRAC'].tolist())
-
-    return pop_tot, sett_tot,frac_tot
+    except Exception as e:
+        print(f"Error processing {country}, {year}: {str(e)}")
+        return None, None, None
 
 
 def population_settlements():
@@ -3673,7 +3923,8 @@ def overlap_with_ucdb():
 
         code, CODE = get_country_alpha3_code(country)
 
-        shapes1_path = data_root +country+'/'+code+'_ucdb/'+code+"_ucdb.shp"
+        # shapes1_path = data_root +country+'/'+code+'_ucdb/'+code+"_ucdb.shp"
+        shapes1_path = f"{data_root}{country}/{code}_ucdb/{code}_ucdb.shp"
         shapes2_path = settlements_shapefile(country, year)
 
         a,b,c = fraction_of_overlapping_shapes(shapes1_path, shapes2_path)
@@ -3785,7 +4036,7 @@ def compare_with_utazi(x):
 
     df = df[['cluster', indicator, 'LNG', 'LAT', 'URBAN_RURA',indic_num,indic_den]]
 
-    df = removing_sporious_data(df)
+    df = removing_spurious_data(df)
 
     df = df.dropna()
 
@@ -3927,9 +4178,11 @@ def error_analysis_network_level_utazi():
         code, CODE = get_country_alpha3_code(country)
 
         # Define paths to relevant files
-        dhs_path = data_root + country + '/' + year + '/' + country + '_DHS_' + year + '.csv'
+        # dhs_path = data_root + country + '/' + year + '/' + country + '_DHS_' + year + '.csv'
+        dhs_path = f"{data_root}{country}/{year}/{country}_DHS_{year}.csv"
 
-        indic_path = result_root + country + '/' + year + '/validation/'+CODE + '_VAL2_' + indicator_name + '_' + year + '.csv'
+        # indic_path = result_root + country + '/' + year + '/validation/'+CODE + '_VAL2_' + indicator_name + '_' + year + '.csv'
+        indic_path = f"{result_root}{country}/{year}/validation/{CODE}_VAL2_{indicator_name}_{year}.csv"
 
         # Read DHS data for the given country and year
         dhs = pd.read_csv(dhs_path)
@@ -4026,7 +4279,7 @@ def local_inverse_distance_weighting_interpolation_10(x):
 
     df = df[['cluster', indicator, 'LNG', 'LAT']]
 
-    df = removing_sporious_data(df)
+    df = removing_spurious_data(df)
 
     df = df.dropna()
 
@@ -4085,13 +4338,15 @@ def local_inverse_distance_weighting_interpolation_10(x):
                             grid[i, j] = sum(predict)
                             break
 
-        subfolder = result_root + country + '/' + year + '/tiff/kfold_valid/'
+        # subfolder = result_root + country + '/' + year + '/tiff/kfold_valid/'
+        subfolder = f"{result_root}{country}/{year}/tiff/kfold_valid/"
         if not os.path.exists(subfolder):
             os.makedirs(subfolder)
 
 
 
-        output_path = subfolder + code + '_' + year + '_idw_' + indicator[4:]+ '_'+str(number) + '.tif'
+        # output_path = subfolder + code + '_' + year + '_idw_' + indicator[4:]+ '_'+str(number) + '.tif'
+        output_path = f"{subfolder}{code}_{year}_idw_{indicator[4:]}_{number}.tif"
 
         with rasterio.open(
             output_path, 'w',
@@ -4118,9 +4373,12 @@ def plot_indicator_raster_with_border_10(x):
     dic_indic = dictionary_of_indicators()
     indic = dic_indic[indicator]
 
-    subfolder = result_root + country + '/' + year + '/tiff/kfold_valid/'
+    #subfolder = result_root + country + '/' + year + '/tiff/kfold_valid/'
+    subfolder = f"{result_root}{country}/{year}/tiff/kfold_valid/"
 
-    raster_path = subfolder + code + '_' + year + '_idw_' + indicator[4:]+ '_'+str(number) + '.tif'
+
+    #raster_path = subfolder + code + '_' + year + '_idw_' + indicator[4:]+ '_'+str(number) + '.tif'
+    raster_path = f"{subfolder}{code}_{year}_idw_{indicator[4:]}_{number}.tif"
 
     shapefile_path = country_shapefile(country)
 
@@ -4174,7 +4432,8 @@ def plot_indicator_raster_with_border_10(x):
         indic = dic_indic[indicator].replace(' ', '_')
 
         # Define the output path for the plotted PNG file
-        out_path = subfolder + code + '_' + year + '_idw_' + indic + '.png'
+        # out_path = subfolder + code + '_' + year + '_idw_' + indic + '.png'
+        out_path = f"{subfolder}{code}_{year}_idw_{indic}.png"
 
         # Save the plot as a PNG image file with specified resolution and layout parameters
 
@@ -4203,10 +4462,12 @@ def validation_settlement_level_10(x):
 
             tmp_pred = 0
 
-            path_to_indicator_raster = result_root + country + '/' + year + '/tiff/kfold_valid/' + code + '_' + year + '_idw_' + indicator[4:] +"_"+str(number)+ '.tif'
+            # path_to_indicator_raster = result_root + country + '/' + year + '/tiff/kfold_valid/' + code + '_' + year + '_idw_' + indicator[4:] +"_"+str(number)+ '.tif'
+            path_to_indicator_raster = f"{result_root}{country}/{year}/tiff/kfold_valid/{code}_{year}_idw_{indicator[4:]}_{number}.tif"
 
             if number==100 :
-                path_to_indicator_raster = result_root + country + '/' + year + '/tiff/' + code + '_' + year + '_idw_' + indicator[4:] + '.tif'
+                # path_to_indicator_raster = result_root + country + '/' + year + '/tiff/' + code + '_' + year + '_idw_' + indicator[4:] + '.tif'
+                path_to_indicator_raster = f"{result_root}{country}/{year}/tiff/{code}_{year}_idw_{indicator[4:]}.tif"
                 np=valid_raster_pixels_within_shape(path_to_indicator_raster, shapei)
 
                 num_pixels.append(len(np))
@@ -4215,10 +4476,12 @@ def validation_settlement_level_10(x):
 
             lidw_prediction.append(tmp_pred)
 
-        subfolder = result_root + country + '/' + year + '/kfold_valid/'
+        # subfolder = result_root + country + '/' + year + '/kfold_valid/'
+        subfolder = f"{result_root}{country}/{year}/kfold_valid/"
         if not os.path.exists(subfolder):
             os.makedirs(subfolder)
-        out_path = subfolder + code + '_' + year + '_idw_' + indicator[4:] +'_'+str(number)+'.csv'
+        # out_path = subfolder + code + '_' + year + '_idw_' + indicator[4:] +'_'+str(number)+'.csv'
+        out_path = f"{subfolder}{code}_{year}_idw_{indicator[4:]}_{number}.csv"
 
         res = pd.DataFrame()
         res[str(number)] = lidw_prediction
@@ -4241,7 +4504,8 @@ def error_analysis_10(x):
 
     count = 0
     for n in range(10):
-        path = result_root + country + '/' + year + '/kfold_valid/'+ code + '_' + year + '_idw_' + indic +'_'+str(n)+'.csv'
+        # path = result_root + country + '/' + year + '/kfold_valid/'+ code + '_' + year + '_idw_' + indic +'_'+str(n)+'.csv'
+        path = f"{result_root}{country}/{year}/kfold_valid/{code}_{year}_idw_{indic}_{n}.csv"
         if os.path.exists(path):
             dfn = pd.read_csv(path)
             ln=dfn[str(n)].tolist()
@@ -4255,7 +4519,8 @@ def error_analysis_10(x):
 
 
     l = []
-    path100 =  result_root + country + '/' + year + '/kfold_valid/'+ code + '_' + year + '_idw_' + indic +'_'+str(100)+'.csv'
+    # path100 =  result_root + country + '/' + year + '/kfold_valid/'+ code + '_' + year + '_idw_' + indic +'_'+str(100)+'.csv'
+    path100 = f"{result_root}{country}/{year}/kfold_valid/{code}_{year}_idw_{indic}_100.csv"
     if os.path.exists(path100):
         df = pd.read_csv(path100)
         l=df[str(100)].tolist()
@@ -4279,7 +4544,8 @@ def error_analysis_diff_10(x):
 
     count = 0
     for n in range(10):
-        path = result_root + country + '/' + year + '/kfold_valid/'+ code + '_' + year + '_idw_' + indic +'_'+str(n)+'.csv'
+        # path = result_root + country + '/' + year + '/kfold_valid/'+ code + '_' + year + '_idw_' + indic +'_'+str(n)+'.csv'
+        path = f"{result_root}{country}/{year}/kfold_valid/{code}_{year}_idw_{indic}_{n}.csv"
         if os.path.exists(path):
             dfn = pd.read_csv(path)
             ln=dfn[str(n)].tolist()
@@ -4293,7 +4559,8 @@ def error_analysis_diff_10(x):
 
 
     l,num_px = [], []
-    path100 =  result_root + country + '/' + year + '/kfold_valid/'+ code + '_' + year + '_idw_' + indic +'_'+str(100)+'.csv'
+    #path100 =  result_root + country + '/' + year + '/kfold_valid/'+ code + '_' + year + '_idw_' + indic +'_'+str(100)+'.csv'
+    path100 = f"{result_root}{country}/{year}/kfold_valid/{code}_{year}_idw_{indic}_100.csv"
     if os.path.exists(path100):
         df = pd.read_csv(path100)
         l=df[str(100)].tolist()
@@ -4779,7 +5046,7 @@ def validation1_for_prediction_by_settlements_network(y):
     df = pd.read_csv(path_to_dhs_survey)
 
     # Remove spurious data from the dataframe
-    df = removing_sporious_data(df)
+    df = removing_spurious_data(df)
 
     # Modify settlement shapes
     shapes = settlement_modification(x, threshold=threshold)
