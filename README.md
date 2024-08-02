@@ -1,5 +1,5 @@
 
-<img width="2376" alt="SEEDNet_logo" src="https://github.com/user-attachments/assets/8d54f199-5d06-41dc-83d8-0dedda5e8f8c">
+<img width="1000" alt="SEEDNet_logo" src="https://github.com/user-attachments/assets/8d54f199-5d06-41dc-83d8-0dedda5e8f8c">
 
 # Darooneh et. al. SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis. 
 
