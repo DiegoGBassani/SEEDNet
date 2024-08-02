@@ -1,4 +1,5 @@
-<img width="200" alt="SEEDNet_square" src="https://github.com/user-attachments/assets/98ab8646-7a88-4354-8de6-2ca7beba4297">
+<img width="1000" alt="SEEDNet_logo" src="https://github.com/user-attachments/assets/b730359a-65fb-419e-aa77-c317c3f66499">
+
 
 # Instructions
 This repository contains the stata code required to replicate the plots submitted with the manuscript.
