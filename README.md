@@ -96,3 +96,5 @@ version = {DRAFT VERSION},
 doi = {10.5683/SP3/XBGKZN},
 url = {https://doi.org/10.5683/SP3/XBGKZN}
 }
+
+https://creativecommons.org/licenses/by-nc-sa/4.0/
