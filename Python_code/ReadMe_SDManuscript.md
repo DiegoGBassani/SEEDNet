@@ -1,3 +1,4 @@
+<img width="2376" alt="SEEDNet_logo" src="https://github.com/user-attachments/assets/607acce8-06e0-4f3e-b0c7-de3d6309cbc3">
 # Instructions:
 
 The code below should be executed after obtaining the files with the indicator values for each country and by survey cluster from the DHS surveys (See instructions in R-Code folder):
