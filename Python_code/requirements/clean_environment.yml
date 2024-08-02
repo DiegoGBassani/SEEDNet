@@ -237,3 +237,4 @@ dependencies:
       - openpyxl
       - xlsxwriter
       - workbook
+      - unidecode
