@@ -74,36 +74,36 @@ Darooneh, A.H. et al. (2024) ‘SEEDNet: A covariate-free multi-country settleme
 
 # Citation
 # Manuscript (TBC)
-@misc{darooneh_2024,
+	@misc{darooneh_2024,
 	title = {SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis},
 	doi = {TBC},
 	number = {},
-  year = {2024},
+  	year = {2024},
 	author = {Darooneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Céline M. and {McLaughlin}, Katie and Cornelius, Sean P. and Bassani, Diego G.},
 	note = {Pre-print not yet available},
-}
+	}
 
 # SEEDNet library
-@data{SP3/R0DPTZ_2024,
-author = {Darooneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Celine and McLaughlin, Katie and Cornelius, Sean and Bassani, Diego G},
-publisher = {Borealis},
-title = {{(Shapefiles) SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis}},
-year = {2024},
-version = {DRAFT VERSION},
-doi = {10.5683/SP3/R0DPTZ},
-url = {https://doi.org/10.5683/SP3/R0DPTZ}
-}
+	@data{SP3/R0DPTZ_2024,
+	author = {Darooneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Celine and McLaughlin, Katie and Cornelius, Sean and Bassani, Diego G},
+	publisher = {Borealis},
+	title = {{(Shapefiles) SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis}},
+	year = {2024},
+	version = {DRAFT VERSION},
+	doi = {10.5683/SP3/R0DPTZ},
+	url = {https://doi.org/10.5683/SP3/R0DPTZ}
+	}
 
 # Replication data and code
-@data{SP3/XBGKZN_2024,
-author = {Daaroneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Celine M and McLaughlin, Katie and Cornelius, Sean P and Bassani, Diego},
-publisher = {Borealis},
-title = {{Replication Data for: SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis}},
-UNF = {UNF:6:FoYx4RegpcAuHgairx6bdQ==},
-year = {2024},
-version = {DRAFT VERSION},
-doi = {10.5683/SP3/XBGKZN},
-url = {https://doi.org/10.5683/SP3/XBGKZN}
-}
+	@data{SP3/XBGKZN_2024,
+	author = {Daaroneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Celine M and McLaughlin, Katie and Cornelius, Sean P and Bassani, Diego},
+	publisher = {Borealis},
+	title = {{Replication Data for: SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis}},
+	UNF = {UNF:6:FoYx4RegpcAuHgairx6bdQ==},
+	year = {2024},
+	version = {DRAFT VERSION},
+	doi = {10.5683/SP3/XBGKZN},
+	url = {https://doi.org/10.5683/SP3/XBGKZN}
+	}
 
 https://creativecommons.org/licenses/by-nc-sa/4.0/
