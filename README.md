@@ -72,8 +72,8 @@ Angola-2015, Armenia-2016, Bangladesh-2014, Benin-2017, Burundi-2016, Cambodia-2
 # Please cite this work as: 
 Darooneh, A.H. et al. (2024) ‘SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis.’ Available at: https://doi.org/TBC.
 
-# citation
-# manuscript (TBC)
+# Citation
+# Manuscript (TBC)
 @misc{darooneh_2024,
 	title = {SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis},
 	doi = {TBC},
