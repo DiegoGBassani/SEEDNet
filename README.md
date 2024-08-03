@@ -73,14 +73,14 @@ Angola-2015, Armenia-2016, Bangladesh-2014, Benin-2017, Burundi-2016, Cambodia-2
 Darooneh, A.H. et al. (2024) ‘SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis.’ Available at: https://doi.org/TBC.
 
 # citation
-# manuscript (pre-print)
+# manuscript (TBC)
 @misc{darooneh_2024,
 	title = {SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis},
 	doi = {TBC},
 	number = {},
   year = {2024},
 	author = {Darooneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Céline M. and {McLaughlin}, Katie and Cornelius, Sean P. and Bassani, Diego G.},
-	note = {Pre-print of article submitted},
+	note = {Pre-print not yet available},
 }
 
 # SEEDNet library
