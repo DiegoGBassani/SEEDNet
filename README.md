@@ -69,7 +69,7 @@ Currently, the 54 surveys covering 39 countries included in this library are:
 Angola-2015, Armenia-2016, Bangladesh-2014, Benin-2017, Burundi-2016, Cambodia-2014, Cambodia-2021, Cameroon-2018, Chad-2014, Cote d'Ivoire-2021, Ethiopia-2016, Ethiopia-2019, Gabon-2012, Gabon-2019, Gambia-2019, Ghana-2014, Ghana-2022, Guatemala-2015, Guinea-2018, Haiti-2016, Jordan-2017, Kenya-2014, Kenya-2022, Lesotho-2014, Liberia-2019, Madagascar-2021, Malawi-2015, Mali-2018, Mauritania-2020, Mozambique-2011, Mozambique-2022, Nepal-2016, Nepal-2022, Nigeria-2013, Nigeria-2018, Pakistan-2017, Philippines-2017, Philippines-2022, Rwanda-2019, Senegal-2014, Senegal-2015, Senegal-2016, Senegal-2017, Senegal-2018, Senegal-2019, Sierra Leone-2019, South Africa-2016, Tajikistan-2017, Tanzania-2015, Tanzania-2022, Timor-Leste-2016, Uganda-2016, Zambia-2018, and Zimbabwe-2015.
 
 ## Please cite this work as: 
-Darooneh, A.H. et al. (2024) ‘SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis.’ Available at: https://doi.org/TBC.
+Darooneh, A.H. et al. (2024) ‘SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis.’ Available at: https://borealisdata.ca/dataverse/SEEDNet.
 
 ## Citation
 ## Manuscript (TBC)
