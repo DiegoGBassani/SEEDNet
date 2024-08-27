@@ -12,7 +12,7 @@ A. Replication of the manuscript results and technical validation. It is restric
 
 B. Estimation of the 15 indicators for the most recent georeferenced DHS survey available for any country. It reproduces the results found in the library presented with this paper. 
 
-The processed files are available on Borealis: ([Add url](https://borealisdata.ca/dataverse/SEEDNet))
+The processed files are available on Borealis: ([https://borealisdata.ca/dataverse/SEEDNet](https://borealisdata.ca/dataverse/SEEDNet))
 
 ## A. For replication of the manuscript estimates and technical validation:
 
