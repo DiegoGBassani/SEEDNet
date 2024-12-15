@@ -37,5 +37,5 @@ convert_shp_files_in_dir <- function(directory) {
 
 # Replace 
 # CHANGE #Directory (directory_path) below to the folder that contains all the subdirectories with .shp files
-directory_path <- "C:/Users/Luc Kortenaar/Downloads/BJ_2017-18_DHS_03202024_1644_107844/BJGE71FL"
+directory_path <- ""
 convert_shp_files_in_dir(directory_path)
