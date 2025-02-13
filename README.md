@@ -60,7 +60,7 @@ The data can be dowloaded as a csv here:
 ## The complete library can be accessed at the [SEEDNet](https://borealisdata.ca/dataverse/SEEDNet) dataverse hosted by Borealis Canada.
 
 ### About the SEEDNet Library:
-SEEDNet (Settlement-level Epidemiological Estimates Database for Network Analysis) is an open-source data library of multi-country representations of population health across human settlements. The methods for generating the settlement-level health indicators from national surveys for each country are described in the manuscript "SEEDNet: A covariate-free settlement-level database of epidemiological estimates for network analysis" (2024-08-02)
+SEEDNet (Settlement-level Epidemiological Estimates Database for Network Analysis) is an open-source data library of multi-country representations of population health across human settlements. The methods for generating the settlement-level health indicators from national surveys for each country are described in the manuscript "SEEDNet: Covariate-free multi-country settlement-level datasets of epidemiological estimates for network analysis" (2024-08-02)
 
 Other countries and indicators will be added as new surveys become available. 
 
@@ -74,7 +74,7 @@ Darooneh, A.H. et al. (2024) ‘SEEDNet: A covariate-free multi-country settleme
 ## Citation
 ## Manuscript (TBC)
 	@misc{darooneh_2024,
-	title = {SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis},
+	title = {SEEDNet: Covariate-free multi-country settlement-level datasets of epidemiological estimates for network analysis},
 	doi = {TBC},
 	number = {},
   	year = {2024},
@@ -83,26 +83,27 @@ Darooneh, A.H. et al. (2024) ‘SEEDNet: A covariate-free multi-country settleme
 	}
 
 ## SEEDNet library
-	@data{SP3/R0DPTZ_2024,
-	author = {Darooneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Celine and McLaughlin, Katie and Cornelius, Sean and Bassani, Diego G},
-	publisher = {Borealis},
-	title = {{(Shapefiles) SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis}},
-	year = {2024},
-	version = {DRAFT VERSION},
-	doi = {10.5683/SP3/R0DPTZ},
-	url = {https://doi.org/10.5683/SP3/R0DPTZ}
-	}
+	@data{SP3/ZF6X3F_2024,
+author = {Bassani, Diego G and Darooneh, Amir Hossein and Kortenaar, Jean-Luc and McLaughlin, Katie and Cornelius, Sean P},
+publisher = {Borealis},
+title = {{SEEDNet Library}},
+UNF = {UNF:6:U3Lvjqp2DCnpdk1Y9nyj3g==},
+year = {2024},
+version = {V1},
+doi = {10.5683/SP3/ZF6X3F},
+url = {https://doi.org/10.5683/SP3/ZF6X3F}
+}
 
 ## Replication data and code
 	@data{SP3/XBGKZN_2024,
-	author = {Daaroneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Celine M and McLaughlin, Katie and Cornelius, Sean P and Bassani, Diego},
-	publisher = {Borealis},
-	title = {{Replication Data for: SEEDNet: A covariate-free multi-country settlement-level database of epidemiological estimates for network analysis}},
-	UNF = {UNF:6:FoYx4RegpcAuHgairx6bdQ==},
-	year = {2024},
-	version = {DRAFT VERSION},
-	doi = {10.5683/SP3/XBGKZN},
-	url = {https://doi.org/10.5683/SP3/XBGKZN}
-	}
+author = {Darooneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Celine M and McLaughlin, Katie and Cornelius, Sean P and Bassani, Diego G},
+publisher = {Borealis},
+title = {{Replication Data for: SEEDNet: Covariate-free multi-country settlement-level datasets of epidemiological estimates for network analysis}},
+UNF = {UNF:6:txboxi3HSCkxPNQ5HaCzcQ==},
+year = {2024},
+version = {V2},
+doi = {10.5683/SP3/XBGKZN},
+url = {https://doi.org/10.5683/SP3/XBGKZN}
+}
 
 ### https://creativecommons.org/licenses/by-nc-sa/4.0/
