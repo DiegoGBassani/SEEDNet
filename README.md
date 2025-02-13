@@ -1,5 +1,5 @@
 
-<img width="1000" alt="SEEDNet_logo" src="https://github.com/user-attachments/assets/8d54f199-5d06-41dc-83d8-0dedda5e8f8c">
+<img width="1000" alt="SEEDNet_logo" src="https://github.com/user-attachments/assets/a6b4f431-f1fe-4925-bdd0-2fbba50b5e59" />
 
 
 Repository containing code and data for replication of the manuscript: "Darooneh et. al. SEEDNet: Covariate-free multi-country settlement-level datasets of epidemiological estimates for network analysis"
