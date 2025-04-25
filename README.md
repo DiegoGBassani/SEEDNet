@@ -60,19 +60,20 @@ The data can be dowloaded as a csv here:
 ## The complete library can be accessed at the [SEEDNet](https://borealisdata.ca/dataverse/SEEDNet) dataverse hosted by Borealis Canada.
 
 ### About the SEEDNet Library:
-SEEDNet (Settlement-level Epidemiological Estimates Database for Network Analysis) is an open-source data library of multi-country representations of population health across human settlements. The methods for generating the settlement-level health indicators from national surveys for each country are described in the manuscript "SEEDNet: Covariate-free multi-country settlement-level datasets of epidemiological estimates for network analysis" (2024-08-02)
+SEEDNet (Settlement-level Epidemiological Estimates Datasets for Network Analysis) is an open-source data library of settlement-level multi-country representations of human populations, their health, demographics and environmental features intended to be used for network-science research and traditional epidemiological research. This is the most up-to-date version of the library and will be updated and improved as new data becomes available. (2025-02-11)
 
 Other countries and indicators will be added as new surveys become available. 
 
 Currently, the 98 surveys covering 52 countries included in this library are: 
 
+Albania-2017, Angola-2015, Armenia-2010, Armenia-2015, Bangladesh-2011, Bangladesh-2014, Bangladesh-2017, Bangladesh-2022, Benin-2011, Benin-2017, Burkina Faso-2010, Burkina Faso-2021, Burundi-2010, Burundi-2016, Cambodia-2010, Cambodia-2014, Cambodia-2021, Cameroon-2011, Cameroon-2018, Chad-2014, Colombia-2009, Comoros-2012, Congo, Democratic Republic-2013, Cote d'Ivoire-2011, Cote d'Ivoire-2021, Dominican Republic-2013, Egypt-2014, Ethiopia-2011, Ethiopia-2016, Ethiopia-2019, Gabon-2012, Gabon-2019, Gambia-2019, Ghana-2014, Ghana-2022, Guatemala-2014, Guinea-2012, Guinea-2018, Haiti-2012, Haiti-2016, Honduras-2011, Jordan-2012, Jordan-2017, Jordan-2023, Kenya-2014, Kenya-2022, Kyrgyz Republic-2012, Lesotho-2014, Lesotho-2023, Liberia-2013, Liberia-2019, Madagascar-2021, Malawi-2010, Malawi-2015, Mali-2012, Mali-2018, Mauritania-2019, Mozambique-2011, Mozambique-2022, Myanmar-2015, Namibia-2013, Nepal-2011, Nepal-2016, Nepal-2022, Niger-2012, Nigeria-2013, Nigeria-2018, Pakistan-2017, Philippines-2017, Philippines-2022, Rwanda-2010, Rwanda-2014, Rwanda-2019, Senegal-2010, Senegal-2012, Senegal-2014, Senegal-2015, Senegal-2016, Senegal-2017, Senegal-2018, Senegal-2019, Senegal-2023, Sierra Leone-2013, Sierra Leone-2019, South Africa-2016, Tajikistan-2012, Tajikistan-2017, Tanzania-2009, Tanzania-2015, Tanzania-2022, Timor-Leste-2016, Togo-2013, Uganda-2011, Uganda-2016, Zambia-2013, Zambia-2018, Zimbabwe-2010, Zimbabwe-2015.
 
-Albania-2017, Angola-2015, Armenia-2010, Armenia-2015, Bangladesh-2011, Bangladesh-2014, Bangladesh-2017, Bangladesh-2022, Benin-2011, Benin-2017, Burkina Faso-2010, Burkina Faso-2021, Burundi-2010, Burundi-2016, Cambodia-2010, Cambodia-2014, Cambodia-2021, Cameroon-2011, Cameroon-2018, Chad-2014, Colombia-2009, Comoros-2012, Congo, Democratic Republic-2013, Coted'Ivoire-2011, Cote d'Ivoire-2021, Dominican Republic-2013, Egypt-2014, Ethiopia-2011, Ethiopia-2016, Ethiopia-2019, Gabon-2012, Gabon-2019, Gambia-2019, Ghana-2014, Ghana-2022, Guatemala-2014, Guinea-2012, Guinea-2018, Haiti-2012, Haiti-2016, Honduras-2011, Jordan-2012, Jordan-2017, Jordan-2023, Kenya-2014, Kenya-2022, Kyrgyz Republic-2012, Lesotho-2014, Lesotho-2023, Liberia-2013, Liberia-2019, Madagascar-2021, Malawi-2010, Malawi-2015, Mali-2012, Mali-2018, Mauritania-2019, Mozambique-2011, Mozambique-2022, Myanmar-2015, Namibia-2013, Nepal-2011, Nepal-2016, Nepal-2022, Niger-2012, Nigeria-2013, Nigeria-2018, Pakistan-2017, Philippines-2017, Philippines-2022, Rwanda-2010, Rwanda-2014, Rwanda-2019, Senegal-2010, Senegal-2012, Senegal-2014, Senegal-2015, Senegal-2016, Senegal-2017, Senegal-2018, Senegal-2019, Senegal-2023, Sierra Leone-2013, Sierra Leone-2019, South Africa-2016, Tajikistan-2012, Tajikistan-2017, Tanzania-2009, Tanzania-2015, Tanzania-2022, Timor-Leste-2016, Togo-2013, Uganda-2011, Uganda-2016, Zambia-2013, Zambia-2018, Zimbabwe-2010, Zimbabwe-2015.
+## Please cite this database, code and peer-reviewed manuscript as: 
+Darooneh AH, Kortenaar J, Goulart CM, McLaughlin K, Cornelius SP, Bassani DG. (2025) ‘SEEDNet: Covariate-free multi-country settlement-level epidemiological estimates datasets for network analysis.’ Scientific Data. 2025 May DD; doi:xx.xxxx/sdata.2025.xx. 
 
-## Please cite this work as: 
-Darooneh, A.H. et al. (2024) ‘SEEDNet: Covariate-free multi-country settlement-level datasets of epidemiological estimates for network analysis.’ Available at: https://borealisdata.ca/dataverse/SEEDNet.
+## SEEDNet Data Library Available at: https://borealisdata.ca/dataverse/SEEDNet.
 
-## Citation
+## Other Citation formats
 
 ## Manuscript (Peer-reviewed)
 	@article{darooneh_seednet_2025_SD,
@@ -82,7 +83,7 @@ Darooneh, A.H. et al. (2024) ‘SEEDNet: Covariate-free multi-country settlement
 	journal = {Scientific Data},
 	author = {Darooneh, Amir Hossein and Kortenaar, Jean-Luc and Goulart, Céline M. and McLaughlin, Katie and Cornelius, Sean P. and Bassani, Diego G.},
 	year = {2025},
-	annote = {Publisher: Nature},
+	annote = {Publisher: Nature Portfolio},
 	}
 
 ## Manuscript (Pre-print)
@@ -105,7 +106,7 @@ Darooneh, A.H. et al. (2024) ‘SEEDNet: Covariate-free multi-country settlement
 	year = {2024},
 	version = {V3},
 	doi = {10.5683/SP3/ZF6X3F},
-	url = {https://doi.org/10.5683/SP3/ZF6X3F}
+	url = {https://doi.org/10.5683/SP3/ZF6X3F},
 	}
 
 ## Replication data and code
@@ -117,7 +118,7 @@ Darooneh, A.H. et al. (2024) ‘SEEDNet: Covariate-free multi-country settlement
 	year = {2024},
 	version = {V2},
 	doi = {10.5683/SP3/XBGKZN},
-	url = {https://doi.org/10.5683/SP3/XBGKZN}
+	url = {https://doi.org/10.5683/SP3/XBGKZN},
 	}
 
 ### https://creativecommons.org/licenses/by/4.0/
